@@ -1,0 +1,352 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{scalerel}
+\usepackage{framed}
+\usepackage[landscape, margin=0.05in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancybox}
+
+\newcommand\triangulo{\scaleobj{1.6}{\bigtriangledown}}
+\DeclareMathSizes{10}{12}{10}{12}
+
+\begin{document}
+\begin{center}
+  \textbf{DEDUCCIÓN NATURAL - Tabla de Reglas de Construcción}
+[Elaborada en \LaTeX\ por Martin Pacheco - 2014] 
+\end{center}\normalsize
+\begin{equation*}
+  \begin{array}{|c|c|c|c|c|}
+  \hline
+    \text{Introducción $\wedge$} &
+    \text{Introducción $\vee$ (1)} &
+    \cellcolor{yellow}\text{Introducción $\rightarrow$} &
+    \text{Introducción $\exists$ } \hspace{1em} \textcolor{red}{\ovalbox{\textbf{1}}} &
+    \text{Relacion Identidad 1}
+    \\
+  \hline
+  \begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha & \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \wedge \beta} \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha
+      \end{array} \\
+    \end{matrix}}{\alpha \vee \beta}
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n [\alpha]\\
+          \triangulo \vspace{2mm}\\
+            \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \rightarrow \beta}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \alpha[t/x]
+      \end{array} \\
+    \end{matrix}}{(\exists x)\alpha}
+  \\
+  \
+\end{matrix}
+&
+  \begin{matrix}
+  \\
+  \cfrac{}{t =' t} \\
+  \\
+  \end{matrix}
+\\ \hline
+    \text{Eliminación $\wedge$ (1)} &
+    \text{Introducción $\vee$ (2)} &
+    \text{Eliminación $\rightarrow$} &
+    \cellcolor{yellow} \text{Eliminación $\exists$} \hspace{1em} \textcolor{red}{\ovalbox{\textbf{2}}} &
+    \text{Relacion Identidad 2}
+\\ \hline
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha \wedge \beta
+      \end{array} \\
+    \end{matrix}}{\alpha}
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \vee \beta}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \rightarrow \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\beta} \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n [\alpha(x)] & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \beta & (\exists x)\alpha
+      \end{array} \\
+    \end{matrix}}{\beta}
+  \\
+  \
+\end{matrix}
+&
+  \begin{matrix}
+  \\
+  \cfrac{t =' s}{s =' t} \\
+  \\
+  \end{matrix}
+\\ \hline
+    \text{Eliminación $\wedge$ (2)} &
+    \cellcolor{yellow}\text{Eliminación $\vee$} &
+    \cellcolor{yellow}\text{Introducción $\leftrightarrow$} &
+    \text{Introducción $\forall$} \hspace{1em} \textcolor{red}{\ovalbox{\textbf{2}}} &
+    \text{Relacion Identidad 3}
+\\ \hline
+\begin{matrix}
+  \cfrac{
+    \begin{matrix} 
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha \wedge \beta
+      \end{array} \\
+    \end{matrix}}{\beta}
+\end{matrix}
+&
+ \begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{ccc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n [\alpha] & \delta_1 ... \delta_n [\beta] \\
+        \triangulo & \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \vee \beta & \gamma & \gamma
+      \end{array} \\
+    \end{matrix}}{\gamma}\\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n [\alpha]& \delta_1 ... \delta_n [\beta]\\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\alpha \leftrightarrow \beta}\\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \alpha
+      \end{array} \\
+    \end{matrix}}{(\forall x)\alpha}
+  \\
+  \ 
+\end{matrix}
+&
+  \begin{matrix}
+  \\
+  \cfrac{\begin{matrix} t =' s & s =' r\end{matrix}}{t =' r} \\
+  \\   
+  \end{matrix}
+\\ \hline
+  \cellcolor{yellow}\text{Reducción al Absurdo} & 
+  \text{Eliminación $\bot$} &
+  \text{Eliminación $\leftrightarrow$ (1)} &
+  \text{Eliminación $\forall$} \hspace{1em} \textcolor{red}{\ovalbox{\textbf{1}}} &
+  \text{Relacion Identidad 4}
+\\ \hline
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \ [\neg \alpha]\\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\alpha}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\alpha}
+  \\
+  \
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+  \begin{matrix}
+  \begin{array}{cc}
+    \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \leftrightarrow \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\beta}\\
+  \ 
+\end{matrix}
+
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        (\forall x)\alpha
+      \end{array} \\
+    \end{matrix}}{\alpha[t/x]}
+  \\
+  \
+\end{matrix}
+&
+  \begin{matrix}
+  \\
+  \cfrac{t_1 =' s_1 \cdots t_n =' s_n}{t[t_1, ... , t_n / z_1 , ... , z_n] =' t[s_1, ... , s_n / z_1 , ... , z_n]} \\
+  \\    
+  \end{matrix}
+\\ \hline
+    \cellcolor{yellow}\text{Introducción $\neg$} & 
+    \text{Eliminación $\neg$} &
+  \text{Eliminación $\leftrightarrow$ (2)} &
+  \cellcolor[gray]{0.1} \textcolor{white}{\textbf{NOTAS}}&
+  \text{Relacion Identidad 4} \hspace{1em} \textcolor{red}{\ovalbox{\textbf{1}}}
+\\ \hline
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \ [\alpha]\\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\neg \alpha}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha & \neg \alpha
+      \end{array} \\
+    \end{matrix}}{\bot} \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+  \begin{matrix}
+  \begin{array}{cc}
+    \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \leftrightarrow \beta & \beta
+      \end{array} \\
+    \end{matrix}}{\alpha} \\
+  \ 
+\end{matrix}
+&
+\hspace{-1ex}
+\begin{array}{c}
+\cellcolor{yellow} \text{Amarillo}  \\ \hline
+\parbox[c][3em][c]{150px}{\text{Con hipotesis que estoy autorizado}\\ \text{ a tachar si aparecen.}} \\ \hline
+\cellcolor[gray]{0.9}\textcolor{red}{\ovalbox{\textbf{1}}}\\ \hline 
+\text{ $t$ está libre para $x$ en $\alpha$.} \\ $ó$ \\ \text{$t_i, s_i$ libres para $z_i$ en $\varphi$} \\ 
+\text{$i = 1 ... n$ y $\varphi \in FORM$}
+\\ \hline 
+\cellcolor[gray]{0.9}\textcolor{red}{\ovalbox{\textbf{2}}} \\ \hline \parbox[c][2em][c]{140px}{\text{$x$ no ocurre libre en $\delta_1 ... \delta_n, \beta$.}} \\
+\end{array}
+\hspace*{-1ex}
+&
+\begin{matrix}
+  \\
+  \cfrac{\begin{matrix} t_1 =' s_1 \cdots t_n =' s_n & \varphi[t_1, ... , t_n / z_1 , ... , z_n]\end{matrix}}{\varphi[s_1, ... , s_n / z_1 , ... , z_n]} \\ 
+  \\
+\end{matrix}
+\\ \hline
+\end{array}
+\end{equation*}
+\end{document}

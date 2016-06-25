@@ -1,0 +1,304 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{scalerel}
+\usepackage{framed}
+\usepackage[landscape, margin=0.1in]{geometry}
+
+\newcommand\triangulo{\scaleobj{1.3}{\bigtriangledown}}
+\DeclareMathSizes{12}{18}{8}{8}
+
+\begin{document}
+\begin{center} \textsc{\LARGE DEDUCCIÓN NATURAL}\vspace{1mm}
+               \textsc{\Large \{Tabla de Reglas de Construcción\}}\vspace{1mm}\\
+               {(Elaborada en \LaTeX\ por Martin Pacheco - 2014) (version extendida para \small$DER_p$)}\end{center}
+\begin{equation*}
+  \begin{array}{|c|c|c|c|c|}
+  \hline
+    \text{Introducción $\wedge$} &
+    \text{Eliminación $\wedge$ (1)} &
+    \text{Eliminación $\wedge$ (2)} &
+    \colorbox{yellow}{Introducción $\rightarrow$} &
+    \text{Eliminación $\rightarrow$}
+    \\
+  \hline
+  \begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha & \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \wedge \beta} \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha \wedge \beta
+      \end{array} \\
+    \end{matrix}}{\alpha}
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix} 
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha \wedge \beta
+      \end{array} \\
+    \end{matrix}}{\beta}
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n [\alpha]\\
+          \triangulo \vspace{2mm}\\
+            \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \rightarrow \beta}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \rightarrow \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\beta} \\
+  \ 
+\end{matrix}
+\\ \hline
+    \colorbox{yellow}{Introducción $\neg$} & 
+    \text{Eliminación $\neg$} &
+    \text{Introducción $\vee$ (1)} &
+    \text{Introducción $\vee$ (2)} &
+    \colorbox{yellow}{Eliminación $\vee$}
+\\ \hline
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \ [\alpha]\\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\neg \alpha}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha & \neg \alpha
+      \end{array} \\
+    \end{matrix}}{\bot} \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \alpha
+      \end{array} \\
+    \end{matrix}}{\alpha \vee \beta}
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n\\
+          \triangulo \vspace{2mm}\\
+        \beta
+      \end{array} \\
+    \end{matrix}}{\alpha \vee \beta}
+  \\
+  \ 
+\end{matrix}
+&
+ \begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{ccc}
+      \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n [\alpha] & \delta_1 ... \delta_n [\beta] \\
+        \triangulo & \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \vee \beta & \gamma & \gamma
+      \end{array} \\
+    \end{matrix}}{\gamma}\\
+  \ 
+\end{matrix}
+\\ \hline
+    \colorbox{yellow}{Reducción al Absurdo} & 
+    \text{Eliminación $\bot$} &
+    \textcolor{red}{\circledast_1}\text{Introducción $\exists$ } &
+\textcolor{red}{\circledast_2} \colorbox{yellow}{Eliminación $\exists$} &
+    \colorbox{yellow}{Introducción $\leftrightarrow$}
+\\ \hline
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \ [\neg \alpha]\\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\alpha}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \bot
+      \end{array} \\
+    \end{matrix}}{\alpha}
+  \\
+  \
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \alpha[t/x]
+      \end{array} \\
+    \end{matrix}}{(\exists x)\alpha}
+  \\
+  \
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n [\alpha(x)] & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \beta & (\exists x)\alpha
+      \end{array} \\
+    \end{matrix}}{\beta}
+  \\
+  \
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{cc}
+      \ \\
+        \delta_1 ... \delta_n [\alpha]& \delta_1 ... \delta_n [\beta]\\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\alpha \leftrightarrow \beta}\\
+  \ 
+\end{matrix}
+\\ \hline
+  \textcolor{red}{\circledast_2} \text{Introducción $\forall$} &
+  \textcolor{red}{\circledast_1} \text{Eliminación $\forall$} &
+  \text{NOTAR:}&
+  \text{Eliminación $\leftrightarrow$ (1)} &
+  \text{Eliminación $\leftrightarrow$ (2)}
+\\ \hline
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        \alpha
+      \end{array} \\
+    \end{matrix}}{(\forall x)\alpha}
+  \\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \\
+  \cfrac{
+    \begin{matrix}
+      \begin{array}{c}
+        \delta_1 ... \delta_n \\
+          \triangulo \vspace{2mm}\\
+        (\forall x)\alpha
+      \end{array} \\
+    \end{matrix}}{\alpha[t/x]}
+  \\
+  \
+\end{matrix}
+&
+\parbox[c][5em][c]{5cm}{\centering  {\small \colorbox{yellow}{Amarillo}\\}Con \mbox{hipotesis} que estoy\\ autorizado a tachar\\ si aparecen.\\
+\normalsize\textcolor{red}{$\circledast_1$}\small\\$t$ está libre para $x$ en $\alpha$. \\
+\normalsize\textcolor{red}{$\circledast_2$}\small\\$x$ no ocurre libre en $\delta_1 ... \delta_n, \beta$.}
+&
+\begin{matrix}
+  \cfrac{
+  \begin{matrix}
+  \begin{array}{cc}
+    \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \leftrightarrow \beta & \alpha
+      \end{array} \\
+    \end{matrix}}{\beta}\\
+  \ 
+\end{matrix}
+&
+\begin{matrix}
+  \cfrac{
+  \begin{matrix}
+  \begin{array}{cc}
+    \ \\
+        \delta_1 ... \delta_n & \delta_1 ... \delta_n \\
+        \triangulo & \triangulo \vspace{2mm}\\
+        \alpha \leftrightarrow \beta & \beta
+      \end{array} \\
+    \end{matrix}}{\alpha} \\
+  \ 
+\end{matrix}
+\\ \hline
+\end{array}
+\end{equation*}
+\end{document}

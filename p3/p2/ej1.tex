@@ -1,0 +1,107 @@
+\section*{Ejercicio 1}
+\subsection*{Parte 1)}
+\begin{itemize}
+  \item (1) operacion = aplicada a: sum y 0.
+  \item (1) OP = aplicada a: i y 1. Al entrar por primera vez al for.
+  \item Suma desde 1 a n:
+  \begin{itemize}
+    \item (1) OP <= aplicada a: i y n.
+    \item (1) OP ++ aplicada a: sum.
+    \item (1) OP ++ aplicada a: i.
+  \end{itemize}
+\item (1) OP <= aplicada a: i y n. Al salir del for.
+\end{itemize}
+\line(1,0){200}
+\subsubsection*{Exacto}
+\begin{align*}
+&T(n) = 1+1+\sum_{i=1}^{n}{(1+1+1)} + 1\\
+&T(n) = 3 + n \cdot 3\\ 
+&\mathbf{T(n) = 3(n+1)}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{En base a Op: sum++}
+\begin{align*}
+&T(n) = \sum_{i=1}^{n}{(1)}\\
+&T(n) = n \cdot 1\\
+&\mathbf{T(n) = n}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{Orden}
+Como el Tiempo Exacto es: $\displaystyle 3n + 3$\\
+Entonces $\mathbf{T(n) = n}$\\
+\pagebreak
+\subsection*{Parte 2)}
+\begin{itemize}
+  \item (1) operacion = aplicada a: sum y 0.
+  \item (1) OP = aplicada a: i y 1. Al entrar por primera vez al for.
+  \item Suma desde 1 a n:
+  \begin{itemize}
+    \item (1) OP <= aplicada a: i y n.
+    \item (1) OP = aplicada a: j y 0. Al entrar por primera vez al for.
+    \item Suma desde 1 a n:
+      \begin{itemize}
+        \item (1) OP <= aplicada a: j y n.
+        \item (1) OP ++ aplicada a: sum.
+        \item (1) OP ++ aplicada a: j.
+      \end{itemize}
+    \item (1) OP <= aplicada a: j y n. Al salir del for.
+  \end{itemize}
+\item (1) OP <= aplicada a: i y n. Al salir del for.
+\end{itemize}
+\line(1,0){200}
+\subsubsection*{Exacto}
+\begin{align*}
+&T(n) = 1+1+\sum_{i=1}^{n}\left(1+1+\sum_{j=1}^{n}{(1+1+1)}+1\right) + 1\\
+&T(n) = 3 + n(3 + 3n)\\ 
+&\mathbf{T(n) = 3(n^2+n+1)}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{En base a Op: sum++}
+\begin{align*}
+&T(n) = \sum_{i=1}^{n}\left(\sum_{j=1}^{n}(1)\right)\\
+&T(n) = n \cdot n \cdot 1\\
+&\mathbf{T(n) = n^2}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{Orden}
+Como el Tiempo Exacto es: $\displaystyle 3n^2 + 3n + 3$\\
+Entonces $\mathbf{T(n) = n^2}$
+\pagebreak
+\subsection*{Parte 3)}
+\begin{itemize}
+  \item (1) operacion = aplicada a: sum y 0.
+  \item (1) OP = aplicada a: i y 1. Al entrar por primera vez al for.
+  \item Suma desde 1 a n:
+  \begin{itemize}
+    \item (1) OP <= aplicada a: i y n.
+    \item (1) OP = aplicada a: j y 0. Al entrar por primera vez al for.
+    \item Suma desde 1 a $n^2$:
+      \begin{itemize}
+        \item (1) OP * aplicada a n.
+        \item (1) OP <= aplicada a: j y n.
+        \item (1) OP ++ aplicada a: sum.
+        \item (1) OP ++ aplicada a: j.
+      \end{itemize}
+    \item (1) OP * aplicada a n. Al salir del for.
+    \item (1) OP <= aplicada a: j y n. Al salir del for.
+  \end{itemize}
+\item (1) OP <= aplicada a: i y n. Al salir del for.
+\end{itemize}
+\line(1,0){200}
+\subsubsection*{Exacto}
+\begin{align*}
+&T(n) = 1+1+\sum_{i=1}^{n}\left(1+1+\sum_{j=1}^{n^2}{(1+1+1+1)}+1+1\right) + 1\\
+&T(n) = 3 + n(4 + 4n^2)\\ 
+&\mathbf{T(n) = 4(n^3+n)+3}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{En base a Op: sum++}
+\begin{align*}
+&T(n) = \sum_{i=1}^{n}\left(\sum_{j=1}^{n^2}(1)\right)\\
+&T(n) = n \cdot n^2 \cdot 1\\
+&\mathbf{T(n) = n^3}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{Orden}
+Como el Tiempo Exacto es: $\displaystyle 4n^3 + 4n + 3$\\
+Entonces $\mathbf{T(n) = n^3}$

@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{scalerel}
+\usepackage{textcomp}
+\usepackage[margin=0.1in]{geometry}
+
+\newcommand\triang{\scaleobj{2}{\bigtriangledown}}
+\newcommand\triangulo[3][]{\begin{array}{c} \vspace{-1.5mm} #1 \\ \ooalign{\triang\cr\hss\raisebox{0.8ex}{\scriptsize #2}\hss}\vspace{1mm} \\ #3 \end{array}
+}
+\DeclareMathSizes{12}{14}{14}{10}
+
+\begin{document}
+\begin{center} \textsc{\LARGE Definicion Inductiva de $DER_p$}\vspace{1mm}
+               \textsc{\Large \{Reglas de Construcción\}}\vspace{1mm}\\
+               {}
+$\begin{array}{|c|c|c|}
+\hline
+\text{[ $\wedge$ I ]} &
+\text{[ $\wedge$ E1 ]} &
+\text{[ $\wedge$ E2 ]}
+\\ \hline
+Si \text{$\triangulo{D}{\varphi}\in$ $DER_p$} &
+Si \text{$\triangulo{D}{\varphi\wedge\psi}\in$ $DER_p$} &
+Si \text{$\triangulo{D}{\varphi\wedge\psi}\in$ $DER_p$}
+\\
+\text{y $\triangulo{D}{\psi}\in$ $DER_p$} & &
+\\ \hline
+\text{entonces $\frac{\triangulo{D}{\varphi}\triangulo{D'}{\psi}}{\varphi\wedge\psi} \in$ $DER_p$} &
+\text{entonces $\frac{\triangulo{D}{\varphi\wedge\psi}}{\varphi}\in$ $DER_p$} &
+\text{entonces $\frac{\triangulo{D}{\varphi\wedge\psi}}{\psi}\in$ $DER_p$ } 
+\\ \hline
+\multicolumn{3}{}{}
+\\\hline
+\text{[ $\rightarrow$ I ]} &
+\text{[ $\rightarrow$ E ]} &
+\\\hline
+
+\text{Si $\triangulo[\varphi]{D}{\psi} \in$ $DER_p$} &
+\text{Si $\triangulo{D}{\varphi} \in$ $DER_p$} & 
+\\
+&
+\text{y $\triangulo{D'}{\varphi\rightarrow\psi} \in$ $DER_p$} &
+\\ \hline
+\text{entonces $\frac{\triangulo[{[\varphi]}]{D}{\psi}}{\varphi\rightarrow\psi} \in$ $DER_p$} &
+\text{entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\rightarrow\psi}}{\psi} \in$ $DER_p$} &
+\\ \hline
+\multicolumn{3}{}{}
+\\\hline
+\end{array}$ 
+$\vee_{I1}$) Si $\triangulo{D}{\varphi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo{D}{\varphi}}{\varphi\vee\psi} \in$ $DER_p$ \\
+$\vee_{I2}$) Si $\triangulo{D}{\psi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo{D}{\psi}}{\varphi\vee\psi} \in$ $DER_p$ \\
+$\vee_E$) Si $\triangulo{D}{\varphi\vee\psi} \in DER_p$ , $\triangulo[\varphi]{D'}{\gamma} \in DER_p$ y $\triangulo[\psi]{D''}{\gamma} \in DER_p$ \\
+entonces $\frac{\triangulo{D}{\varphi\vee\psi} \triangulo[{[\varphi]}]{D'}{\gamma} \triangulo[{[\psi]}]{D''}{\gamma}}{\gamma} \in DER_p$ \\
+$\leftrightarrow_I$) Si $\triangulo[\varphi]{D}{\psi} \in$ $DER_p$ y $\triangulo[\psi]{D'}{\varphi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo[{[\varphi]}]{D}{\psi} \triangulo[{[\psi]}]{D}{\varphi}}{\varphi\leftrightarrow\psi} \in$ $DER_p$ \\
+$\leftrightarrow_{E1}$) Si $\triangulo{D}{\varphi} \in$ $DER_p$ y $\triangulo{D'}{\varphi\leftrightarrow\psi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\leftrightarrow\psi}}{\psi} \in $ $DER_p$ \\
+$\leftrightarrow_{E2}$) Si $\triangulo{D}{\varphi} \in$ $DER_p$ y $\triangulo{D'}{\varphi\leftrightarrow\psi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\leftrightarrow\psi}}{\varphi} \in$ $DER_p$ \\
+$\neg_I$) Si $\triangulo[\varphi]{D}{\bot} \in$ $DER_p$ \\
+entonces $\frac{\triangulo[{[\varphi]}]{D}{\bot}}{\neg\varphi} \in$ $DER_p$ \\
+$\neg_E$) Si $\triangulo{D}{\varphi} \in$ $DER_p$ y $\triangulo{D'}{\neg\varphi} \in$ $DER_p$ \\
+entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\neg\varphi}}{\bot} \in$ $DER_p$ \\
+$\bot_E$) Si $\triangulo{D}{\bot} \in$ $DER_p$ y $\varphi \in$ PROP \\
+entonces $\frac{\triangulo{D}{\bot}}{\varphi} \in$ $DER_p$ \\
+$RAA$) Si $\triangulo[\neg\varphi]{D}{\bot} \in$ $DER_p$ \\
+entonces $\frac{\triangulo[{[\neg\varphi]}]{D}{\bot}}{\varphi} \in$ $DER_p$ \\
+$\forall_I$) Si $\triangulo{D}{\varphi} \in$ $DER_p$ y $ x \notin FV(H(D))$ \\
+entonces $\frac{\triangulo{D}{\varphi}}{(\forall x)\varphi} \in DER_p$ \\
+$\forall_E$) Si $\triangulo{D}{(\forall x)\varphi} \in$ $DER_p$ y $t$ está libre para $x$ en $\varphi$ \\
+entonces $\frac{{(\forall x)\varphi}}{\varphi[t/x]} \in DER_p$ \\
+$\exists_I$) Si $\triangulo{D}{\varphi[t/x]} \in DER_p$ y $t$ esta libre para $x$ en $\varphi$ \\
+entonces $\frac{\triangulo{D}{\varphi[t/x]}}{(\exists x)\varphi} \in DER_p$ \\
+$\exists_E$) Si $\triangulo{D}{(\exists x)\varphi} \in DER_p$ y $\triangulo[\varphi]{D'}{\psi} \in DER_p$ tal que $x \notin FV(H(D')-{\varphi}) \cup FV(\psi)$ \\
+entonces $\frac{\triangulo{D}{(\exists x)\varphi}\triangulo[{[\varphi]}]{D'}{\psi}}{\psi} $
+\end{center}
+\end{document}

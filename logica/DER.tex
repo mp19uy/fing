@@ -1,0 +1,36 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{scalerel}
+\usepackage{textcomp}
+\usepackage[margin=0.1in]{geometry}
+
+\newcommand\triang{\scaleobj{2}{\bigtriangledown}}
+\newcommand\triangulo[3][]{\begin{array}{c} \vspace{-1.5mm} #1 \\ \ooalign{\triang\cr\hss\raisebox{0.8ex}{\scriptsize #2}\hss}\vspace{1mm} \\ #3 \end{array}
+}
+\DeclareMathSizes{12}{14}{14}{10}
+
+\begin{document}
+\begin{center} \textsc{\LARGE Definicion Inductiva de DER}\vspace{1mm}
+               \textsc{\Large \{Reglas de Construcción\}}\vspace{1mm}\\
+               {}\end{center}
+$\wedge_I$) Si $\triangulo{D}{\varphi}\in$ DER y $\triangulo{D}{\psi}\in$ DER entonces $\frac{\triangulo{D}{\varphi}\triangulo{D'}{\psi}}{\varphi\wedge\psi} \in$ DER\\
+$\wedge_{E1}$) Si $\triangulo{D}{\varphi\wedge\psi}\in$ DER entonces $\frac{\triangulo{D}{\varphi\wedge\psi}}{\varphi}\in$ DER \\
+$\wedge_{E2}$) Si $\triangulo{D}{\varphi\wedge\psi}\in$ DER entonces $\frac{\triangulo{D}{\varphi\wedge\psi}}{\psi}\in$ DER \\
+$\rightarrow_I$) Si $\triangulo[\varphi]{D}{\psi} \in$ DER entonces $\frac{\triangulo[{[\varphi]}]{D}{\psi}}{\varphi\rightarrow\psi} \in$ DER \\
+$\rightarrow_E$) Si $\triangulo{D}{\varphi} \in$ DER y $\triangulo{D'}{\varphi\rightarrow\psi} \in$ DER entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\rightarrow\psi}}{\psi} \in$ DER \\
+$\vee_{I1}$) Si $\triangulo{D}{\varphi} \in$ DER entonces $\frac{\triangulo{D}{\varphi}}{\varphi\vee\psi} \in$ DER \\
+$\vee_{I2}$) Si $\triangulo{D}{\psi} \in$ DER entonces $\frac{\triangulo{D}{\psi}}{\varphi\vee\psi} \in$ DER \\
+$\vee_E$) Si $\triangulo{D}{\varphi\vee\psi} \in$ DER, $\triangulo[\varphi]{D'}{\gamma} \in DER$ y $\triangulo[\psi]{D''}{\gamma} \in$ DER entonces $\frac{\triangulo{D}{\varphi\vee\psi} \triangulo[{[\varphi]}]{D'}{\gamma} \triangulo[{[\psi]}]{D''}{\gamma}}{\gamma} \in$ DER \\
+$\leftrightarrow_I$) Si $\triangulo[\varphi]{D}{\psi} \in$ DER y $\triangulo[\psi]{D'}{\varphi} \in$ DER entonces $\frac{\triangulo[{[\varphi]}]{D}{\psi} \triangulo[{[\psi]}]{D}{\varphi}}{\varphi\leftrightarrow\psi} \in$ DER \\
+$\leftrightarrow_{E1}$) Si $\triangulo{D}{\varphi} \in$ DER y $\triangulo{D'}{\varphi\leftrightarrow\psi} \in$ DER entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\leftrightarrow\psi}}{\psi} \in $ DER\\
+$\leftrightarrow_{E2}$) Si $\triangulo{D}{\varphi} \in$ DER y $\triangulo{D'}{\varphi\leftrightarrow\psi} \in$ DER entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\varphi\leftrightarrow\psi}}{\varphi} \in$ DER \\
+$\neg_I$) Si $\triangulo[\varphi]{D}{\bot} \in$ DER entonces $\frac{\triangulo[{[\varphi]}]{D}{\bot}}{\neg\varphi} \in$ DER \\
+$\neg_E$) Si $\triangulo{D}{\varphi} \in$ DER y $\triangulo{D'}{\neg\varphi} \in$ DER entonces $\frac{\triangulo{D}{\varphi} \triangulo{D'}{\neg\varphi}}{\bot} \in$ DER \\
+$\bot_E$) Si $\triangulo{D}{\bot} \in$ DER y $\varphi \in$ PROP entonces $\frac{\triangulo{D}{\bot}}{\varphi} \in$ DER \\
+$RAA$) Si $\triangulo[\neg\varphi]{D}{\bot} \in$ DER entonces $\frac{\triangulo[{[\neg\varphi]}]{D}{\bot}}{\varphi} \in$ DER
+
+\end{document}

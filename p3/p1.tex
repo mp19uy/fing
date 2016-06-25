@@ -1,0 +1,445 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Practico 1 - Programacion 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper]{report}
+
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+% between \documentclass and \begin{document}.
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Another way to Set the margins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[margin=2cm]{geometry}  % set the %margins to 2cm on all sides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% to use urls
+\usepackage{hyperref}
+
+% to include figures
+\usepackage{graphicx}
+
+% great math stuff
+\usepackage{amsmath}
+
+% for blackboard bold, etc
+\usepackage{amsfonts}
+
+% better theorem environments
+\usepackage{amsthm}
+
+% para tildes y eñes y otras yerbas
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+  
+% para links y emails
+\usepackage{hyperref}
+
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt} 
+
+% Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+
+% Multi rows
+\usepackage{multirow}
+
+% caracteres
+\usepackage{textcomp}
+% various theorems, numbered by section
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\DeclareMathOperator{\id}{id}
+
+% for bolding symbols
+\newcommand{\bd}[1]{\mathbf{#1}}
+
+% for Real numbers
+\newcommand{\RR}{\mathbb{R}}
+
+% for Integers
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+
+% Definition of the title
+\title{Resolución del \practico\ \\de \materia}
+
+% Definition of the author
+\author{Martín Pacheco\\Estudiante de Ingeniería en Computación\\Facultad de Ingeniería, UDELAR, Montevideo, Uruguay}
+\date{\anio}
+% Definitions to fill the header with
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\materia}{Programación 3}
+\newcommand{\practico}{Práctico 1}
+\newcommand{\name}{Martín Pacheco}
+\newcommand{\facultad}{Facultad de Ingeniería}
+\newcommand{\semestre}{Segundo Semestre}
+\newcommand{\anio}{2014}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Redefinition of commands
+\newcommand{\sectionh}[1]{\line(1,0){500}\section*{#1}}
+% Now custimize the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789 LaTeX 101
+% J. Random Student Assignment N Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\lhead{\textbf{\facultad\\ \name}}
+\chead{\textbf{\materia\\ \practico}}
+\rhead{\textbf{\semestre\\ \anio}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+%\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+%\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+
+
+% Here begin the document
+\begin{document}
+
+% Print the title of the document
+\maketitle
+\def\abstractname{ Sobre este documento...}
+\begin{abstract}
+  Son resoluciones del \practico\ del curso de \materia\ dictado en el \semestre\ de \anio, en la \facultad, UDELAR, Montevideo, Uruguay. 
+  \\\\
+  Estas resoluciones son en parte propias, en parte de otros estudiantes de la facultad y en parte hechas a partir de otras resoluciones de prácticos de años anteriores y material obtenido en internet con ejercicios similares resueltos.
+  \\\\
+  La motivación de escribirlo \LaTeX\ ha sido por mi interés en aprender el lenguaje y para poder proporcionar de una manera más ordenada y legible, las resoluciones del prácticos a otros estudiantes que se puedan beneficiar con el uso de este material.
+  \\\\
+  Por sugerencias, comentarios y errores sobre este material, enviar un email a \href{mailto:mp19uy@gmail.com}{mp19uy@gmail.com} .
+\end{abstract}
+
+\section*{Resumen Teórico del libro:}\subsection*{Aprenda C ANSI como si estuviera en Primero}
+\subsubsection*{Unidades de memoria}
+El \textbf{bit} es una unidad elemental de memoria con valor binario: \\ o toma el valor 1 o toma valor 0.\\
+Los bits se agrupan de a 8, para formar un \textbf{byte}.\\\\
+\begin{tabular}{|l|l|c}
+\hline bit & Binario (vale 1 o 0)\\
+\hline byte & 8 bits \\
+\hline Kilobyte & 1024 ($2^{10}$) bytes \\
+\hline Megabyte & 1024 ($2^{10}$) Kilobytes\\
+\hline Gigabyte & 1024 ($2^{10}$) Megabytes\\
+\hline Terabyte & 1024 ($2^{10}$) Gigabytes\\
+\hline 
+\end{tabular}
+
+\subsubsection*{Programa en C}
+C es un \textbf{lenguaje de alto nivel}, esto es, un lenguaje para escribir un programa que es mas o menos comprensible por el usuario, pero no por el procesador. Para que éste pueda ejecutarlos es necesario traducirlo a su propio \textbf{lenguaje de máquina}.\\
+El lenguaje C está constituido por tres elementos: el compilador, el preprocesador y la librería estándar.\\El \textbf{compilador} se encarga de traducir el programa a lenguaje de maquina.\\
+El compilado de un programa se divide en dos etapas que se pueden realizar juntas o por separado. \\
+\begin{enumerate}
+  \item El programa de alto nivel se suele almacenar en \textbf{ficheros fuente} con extensión \textbf{(*.c)} escritos por el programador, que el compilador traduce a \textbf{lenguaje ensamblador} (lenguaje muy proximo al lenguaje maquina) y produce un \textbf{fichero objeto} de extension \textbf{(*.obj)}.\\
+  En este proceso, el compilador puede \textbf{detectar ciertos errores}, enviando al usuario el correspondiente mensaje.
+  \begin{itemize}
+    \item El \textbf{preprocesador} es un componente característico de C, que no existe en otros lenguajes de
+programación. El preprocesador actúa sobre el programa fuente, antes de que empiece la compilación propiamente dicha, para realizar ciertas operaciones.\\ Una de estas operaciones es, por ejemplo, la \textbf{sustitución de constantes simbólicas}.\\\\
+Otra operacion, es para resolver lo siguiente: como hay funciones que no existen dentro del lenguaje C, se tienen funciones agrupadas en un conjunto de librerías de código objeto, que constituyen la llamada \textbf{librería estándar} del lenguaje.\\ La llamada a dichas funciones se hace como a otras funciones cualesquiera, y deben ser declaradas antes de ser llamadas por el programa (por medio de la directiva \textbf{\#include}) para que el preprocesador las procese.\\\\
+El preprocesador realiza muchas otras funciones. Lo importante es recordar que actúa siempre \textbf{por delante del compilador} (de ahí su nombre), facilitando su tarea y la del programador.
+  
+  \end{itemize}
+  \item La otra etapa es el \textbf{montaje} (\textbf{linkage}) del programa, donde se produce un \textbf{programa ejecutable} en lenguaje maquina en el que estan incorporados todos los otros modulos que aporta el sistema, sin intervencion explicita del programador (funciones de libreria, recursos del sistema operativo, etc).\\
+  Este ejecutable se guarda con extension \textbf{(*.exe)} en Windows y sin extension predefinida en Linux (no es necesario tenga una extension).
+\end{enumerate}
+\pagebreak
+
+\subsubsection*{Tipos de Datos Fundamentales}
+\begin{tabular}{|l|l|l|l|}
+  \hline \textbf{Datos} &  \textbf{Basicos} & \textbf{Descripcion} & \textbf{Tamaño}\\
+  \hline\multirow{2}{*}{\textbf{Enteros}} & int & Numero entero & 16-32 bits (2-4 bytes)\\
+   \cline{2-4} & char & Caracter ASCII & 8 bits (1 byte) \\
+  \hline\multirow{2}{*}{\textbf{Reales}} & float & Numero real & 32 bits (4 bytes) \\
+   \cline{2-4} & double & Numero real & 64 bits (8 bytes)\\
+  \hline
+\end{tabular} \\
+\begin{itemize}
+\item Algunos compiladores usan 32 bits (4 bytes) para int.\\ El ANSI C no tiene esto normalizado y existen diferencias entre compiladores (A modo de ejemplo, se pueden ver las de C++ en: \url{http://en.cppreference.com/w/cpp/language/types}).\\
+La que si especifica que se debe cumplir es:\\ $\mathbf{sizeof(short) \leq sizeof(int) \leq sizeof(long) \leq sizeof(long\ long)}$\\
+En la siguiente tabla se considera 32 bits (2 bytes) para int.
+\end{itemize}
+\begin{tabular}{|l|l|l|l|l|}
+  \hline \textbf{Datos} &  \textbf{Derivadores} & \textbf{Basicos} & \textbf{Tamaño} & \textbf{Rango} \\
+  \hline\multirow{11}{*}{\textbf{Enteros}} & short & (int) & 16 bits (2 bytes) & [-32768 , 32767]\\
+   \cline{2-5} & long & (int) & 32 bits (4 bytes) & $\begin{matrix}$[-2.147.483.648$,\\$\ \ 2.147.483.647$]\end{matrix}$\\
+   \cline{2-5} & long long & (int) & 64 bits (8 bytes) & $\begin{matrix}[$-9.223.372.036.854.775.808$, \\$\ \ 9.223.372.036.854.775.807$]
+   \end{matrix}$\\
+  \cline{2-5} & \multirow{2}{*}{signed} & int & \multirow{7}{*}{El mismo.} & [-32768 , 32767]\\
+  \cline{3-3}\cline{5-5} & & char & &[-128 , 127] \\
+   \cline{2-3}\cline{5-5} & \multirow{5}{*}{unsigned} & int & & [0 , 65535]\\
+   \cline{3-3}\cline{5-5} & & char & & [0 , 255] \\ 
+   \cline{3-3}\cline{5-5} &  & long (int) & & [0 , 4.294.967.295]\\
+   \cline{3-3}\cline{5-5} &  & long long (int) & & $\begin{matrix}[$0 ,$\hfill \\$18.446.744.073.709.551.615$]
+   \end{matrix}$\\
+  \hline
+\end{tabular} \\
+\begin{itemize}
+\item El (int) entre parentesis significa que es opcional escribirlo.
+\item Se pueden combinar mas de un derivador aplicados al mismo tipo basico, como se ve con unsigned long.
+\item El estandar ANSI C en realidad pide que el rango minimo en los tipos de datos singed, sea [$-2^{(n-1)} + 1$ , $2^{(n-1)} - 1$] con n el tamaño de bits del tipo de dato, pero se permite que la cota inferior sea menor y es usual que se defina como $-2^{(n-1)}$, que es como está en esta tabla. \\Los siguientes enlaces explican este detalle (el primero es de stackoverflow, el segundo es el ultimo borrador del estandar C11):\\
+\url{http://stackoverflow.com/questions/6155784/range-of-values-in-c-int-and-long-32-64-bits#6155838}\\
+\url{http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf#523}
+\item Los tipos de datos reales no tienen exactamente un rango, ya que hay infinitos numeros reales entre 1 y 0 por ejemplo, y es imposible almacenar finitos valores en una espacio limitado de memoria.\\
+Lo que se hace, es representarlos en notacion exponencial y garantizar un maximo de precision de cifras significativas.
+\begin{itemize}
+  \item \textbf{float}: Tiene 32 bits de los cuales 24 son para la mantisa (donde 1 es para el signo y 23 para el valor) y 8 para el exponente (1 para el signo y 7 para el valor). Tiene una \textbf{precisión de 6 digitos}.
+  \item \textbf{double}: Tiene 64 bits de los cuales 53 son para la mantisa (1 para el signo, 52 para el valor) y 11 para el exponente (1 para el signo, 10 para el valor). Tiene una \textbf{precisión de 15 digitos}.
+\end{itemize}
+El numero a representar en notacion exponencial, se considera de la forma: $\mathbf{ 2^{(exponente)} \cdot mantisa}$\\\\
+Donde el exponente es un numero entre [-128, 127] representado de forma binaria con 8 bits (7 para los valores, 1 para el signo) y la mantisa es un numero entre 0 y 1, que se representa en forma binaria usando 24 bits (23 para los valores, 1 para el signo), y para convertirlo a decimal se considera lo siguiente:\\
+Si pos es la posicion del bit, entonces el valor es $2^{-pos}$, asi el primero (de la izquierda) vale $2^{-1}$ y el ultimo $2^{-23}$. De esta manera, se suman los valores correspondientes de bits que tengan unos (1) y se obtiene la mantisa. Conversor de binario a decimal para entender mejor: \url{www.h-schmidt.net/FloatConverter/IEEE754.html}.
+\end{itemize}
+\pagebreak
+\subsubsection*{Modo de Almacenamiento}
+El modo de almacenamiento determina cuándo se crea una variable, cuándo deja de existir y desde dónde se puede
+acceder a ella, es decir, desde dónde es visible.\\
+De los 4 modos que a continuacion se presentan, todos son para variables, pero solo extern y static para funciones.
+\begin{itemize}
+  \item \textbf{auto} (automatico)
+  \begin{itemize}
+  \item \texttt{Descripcion:} Es la opcion por defecto de las variables declaradas dentro de bloques \{\}.
+  \item \texttt{Uso:} En C la declaracion debe aparecer al comienzo del bloque, en C++ puede aparecer en cualquier lugar del bloque, pero hay autores que aconsejan ponerlas antes del primer uso de la variable.
+  \item \texttt{Sintaxis:} No es necesario poner la palabra auto. 
+  \item \texttt{Tiempo de vida:} Cada variable auto es creada al comenzar a ejecutarse el bloque y deja de existir cuando el bloque se termina de ejecutar. Cada vez que se ejecuta el bloque, las variables auto se crean y se destruyen de nuevo.
+  \item \texttt{Alcance:} Las variables auto son variables locales, es decir, sólo son visibles en el bloque en el que están definidas y en otros bloques anidados en él, aunque pueden ser ocultadas por una nueva declaración de una nueva variable con el mismo nombre en un bloque anidado.
+  \item \texttt{Inicialización:} No son inicializadas por defecto, y antes de que el programa les asigne un valor pueden contener basura informática (conjuntos aleatorios de unos y ceros, consecuencia de un uso anterior de esa zona de la memoria).
+  \end{itemize}
+
+\item \textbf{extern} (externa o global)
+  \begin{itemize}
+    \item \texttt{Descripcion:}  Son variables globales.
+    \item \texttt{Uso:} Se definen fuera de cualquier bloque o función, por ejemplo antes de definir la función main(). 
+    \item \texttt{Tiempo de vida:} Estas variables existen durante toda la ejecución del programa. Las variables extern son visibles por todas las funciones que están entre la definición y el fin del fichero.
+    \item \texttt{Alcance:} Para verlas desde otras funciones definidas anteriormente o desde otros ficheros, deben ser declaradas en ellos como variables extern. También estas variables pueden ocultarse mediante la declaración de otra variable con el mismo nombre en el interior de un bloque.
+    \item \texttt{Inicialización:} Por defecto, son inicializadas a cero.\\
+     Una variable extern es definida o creada (una variable se crea en el momento en el que se le reserva memoria y se le asigna un valor) una sola vez, pero puede ser declarada (es decir, reconocida para poder ser utilizada) varias veces, con objeto de hacerla accesible desde diversas funciones o ficheros. 
+    \item \texttt{Advertencia}: La variables extern permiten transmitir valores entre distintas funciones, pero ésta es una \textbf{práctica peligrosa}.
+  \end{itemize}
+
+\item \textbf{static} (estática)
+  \begin{itemize}
+    \item \texttt{Uso:} Dentro de un bloque.
+    \item \texttt{Tiempo de Vida:} Conservan su valor entre distintas ejecuciones del bloque. Dicho de otra forma, las variables static se declaran dentro de un bloque como las auto, pero permanecen en memoria durante toda la ejecución del programa como las extern.\\
+Cuando se llama varias veces sucesivas a una función (o se ejecuta varias veces un bloque) que tiene declaradas variables static, los valores de dichas variables se conservan entre dichas llamadas.
+ \item \texttt{Inicialización:} La inicialización sólo se realiza la primera vez. Por defecto, son inicializadas a cero.
+ \item \texttt{Alcance:} Las variables definidas como static extern son visibles sólo para las funciones y bloques comprendidos desde su definición hasta el fin del fichero. No son visibles desde otras funciones ni aunque se declaren como extern. Ésta es una forma de restringir la visibilidad de las variables.
+ \item \texttt{Funciones:} Por defecto, y por lo que respecta a su visibilidad, las funciones tienen modo extern. Una función puede también ser definida como static, y entonces sólo es visible para las funciones que están definidas después de dicha función y en el mismo fichero. Con estos modos se puede controlar la visibilidad de una función, es decir, desde qué otras funciones puede ser llamada.
+  \end{itemize}
+\item \textbf{register} (registro)\\
+Este modo es una recomendación para el compilador, con objeto de que si es posible, ciertas variables sean almacenadas en los registros de la CPU y los cálculos con ellas sean más rápidos.
+\end{itemize}
+\pagebreak
+\subsubsection*{Promoción y Casting}
+\begin{itemize}
+  \item \textbf{Promocion} - Implicito - Automatico
+  \begin{itemize}
+    \item Las \textbf{conversiones implícitas de tipo} tienen lugar cuando en una expresión se mezclan variables de distintos tipos.
+    \item  Por ejemplo, para poder sumar dos variables hace falta que ambas sean del mismo tipo. Si una es int y otra float, la primera se convierte a float (es decir, la variable del tipo de menor rango se convierte al tipo de mayor rango), antes de realizar la operación. 
+    \item A esta conversión automática e implícita de tipo (el \textbf{programador no necesita intervenir}, aunque sí conocer sus reglas), se le denomina promoción, pues \textbf{la variable de menor rango es promocionada al rango de la otra}.
+    \item Así pues, cuando dos tipos diferentes de constantes y/o variables aparecen en una misma expresión relacionadas por un operador, el compilador convierte los dos operandos al mismo tipo de acuerdo con los rangos, que de mayor a menor se ordenan del siguiente modo:\\
+\textbf{long double > double > float > unsigned long > long > unsigned int > int > char}
+\item Otra clase de conversión implícita tiene lugar cuando el \textbf{resultado de una expresión es asignado a una variable}, pues dicho resultado \textbf{se convierte al tipo de la variable} (en este caso, ésta puede ser de menor rango que la expresión, por lo que \textbf{esta conversión puede perder información y ser peligrosa}).
+\item Por ejemplo, si i y j son variables enteras y x es double, x = i*j – j + 1;
+  \end{itemize} \ \\
+  \item \textbf{Casting} - Explicito - Manual
+  \begin{itemize}
+    \item  Las \textbf{conversiones explícitas de tipo} son una conversión de tipo, forzada por el programador. 
+    \item Para ello basta \textbf{preceder} la constante, variable o expresión que se desea convertir \textbf{por el tipo al que se desea convertir, encerrado entre paréntesis}. 
+    \item En el siguiente ejemplo: \\
+    k = (int) 1.7 + (int) masa;\\
+    la variable masa es convertida a tipo int, y la constante 1.7 (que es de tipo double) también.
+    \item El casting se aplica con frecuencia a los \textbf{valores de retorno de las funciones}.
+  \end{itemize}
+\end{itemize}
+\pagebreak
+\section*{Ejercicio 1}
+(En en el sistema donde se corrió el codigo, la representacion interna de int era de 32 bits, pero la de short de 16 bits, asi que para considerar los requerimientos del practico, asumir short como int).
+\subsection*{Parte a)}
+\subsubsection*{Código:}
+\begin{verbatim}
+#include <stdio.h>
+#include <limits.h>
+#include <float.h>
+int main() {
+  printf("char: [%d , %d]\n",CHAR_MIN,CHAR_MAX);
+  printf("short: [%d , %d]\n",SHRT_MIN, SHRT_MAX);
+  printf("unsigned short: [0 , %u]\n",USHRT_MAX);
+  printf("int: [%d , %d]\n",INT_MIN, INT_MAX);
+  printf("unsigned int: [0 , %u]\n", UINT_MAX);
+  printf("long: [%ld , %ld]\n", LONG_MIN, LONG_MAX);
+  printf("unsigned long: [0 , %lu]\n", ULONG_MAX);
+  printf("float: [%E , %E]\n", FLT_MIN, FLT_MAX);
+  printf("double: [%E , %E]\n", DBL_MIN, DBL_MAX);
+  return 0;
+}
+\end{verbatim}
+\subsubsection*{Respuesta:}
+\begin{verbatim}
+char: [-128 , 127]
+short: [-32768 , 32767]
+unsigned short: [0 , 65535]
+int: [-2147483648 , 2147483647]
+unsigned int: [0 , 4294967295]
+long: [-9223372036854775808 , 9223372036854775807]
+unsigned long: [0 , 18446744073709551615]
+float: [1.175494E-38 , 3.402823E+38]
+double: [2.225074E-308 , 1.797693E+308]
+\end{verbatim}
+\subsection*{Parte b)}
+\subsubsection*{Código:}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+  printf("char: %lu bits.\n",sizeof(char) * 8);
+  printf("short: %lu bits.\n",sizeof(short) * 8);
+  printf("unsigned short: %lu bits.\n",sizeof(unsigned short) * 8);
+  printf("int: %lu bits.\n",sizeof(int) * 8);
+  printf("unsigned int: %lu bits.\n",sizeof(unsigned int) * 8);
+  printf("long: %lu bits.\n",sizeof(long) * 8);
+  printf("unsigned long: %lu bits.\n",sizeof(unsigned long) * 8);
+  printf("float: %lu bits.\n",sizeof(float) * 8);
+  printf("double: %lu bits.\n",sizeof(double) * 8);
+  return 0;
+}
+\end{verbatim}
+\pagebreak
+\subsubsection*{Respuesta:}
+\begin{verbatim}
+char: 8 bits.
+short: 16 bits.
+unsigned short: 16 bits.
+int: 32 bits.
+unsigned int: 32 bits.
+long: 64 bits.
+unsigned long: 64 bits.
+float: 32 bits.
+double: 64 bits.
+\end{verbatim}
+\ \\\\
+\sectionh{Ejercicio 2}
+\begin{itemize}
+  \item \textbf{\#define} <nombre> <valor>
+  \subsubsection*{Ventajas:}
+   \begin{itemize}
+     \item No se consume memoria para almacenar el valor porque es remplazado por el pre-procesador antes de la compilacion.
+   \end{itemize}
+  \subsubsection*{Desventajas:}
+  \begin{itemize}
+    \item Dificil de debugear problemas relacionados con el valor asignado o su uso, ya que al ser remplazada por su valor en el codigo, se pierde rastro de la constante.
+    \item No tienen tipo definido y se comportan diferente segun el contexto en el que se usen. Se puede "forzar" el tipo casteando, pero tambien puede llevar a problemas de sintaxis.
+  \end{itemize}
+  \item \textbf{const} <tipo> <nombre> = <valor>
+  \subsubsection*{Ventajas:}
+  \begin{itemize}
+    \item Tiene tipo y alcance definido.
+    \item Se puede debugear facilmente.
+  \end{itemize}
+  \subsubsection*{Desventajas:}
+  \begin{itemize}
+    \item Practicamente ninguna.
+  \end{itemize}
+\end{itemize}
+En general, es preferible definir constantes con el segundo método.\\
+\sectionh{Ejercicio 3}
+Para compilar y ejecutar el archivo programa.cpp:\\\\
+\textbf{En Linux:}
+\begin{verbatim}
+g++ programa.cpp -o programa
+./programa
+\end{verbatim}
+\textbf{En Windows:}
+\begin{verbatim}
+g++ programa.cpp -o programa.exe
+programa.exe
+\end{verbatim}
+\subsection*{Parte a)}
+\subsubsection*{Respuesta:}
+\begin{verbatim}
+Programa 1.
+\end{verbatim}
+\subsection*{Parte b)}
+\subsubsection*{Respuesta:}
+\begin{verbatim}
+Ingrese un entero: 10
+Entero ingresado: 10
+\end{verbatim}
+\sectionh{Ejercicio 4}
+\subsection*{Parte a)}
+Imprime "a es 0" porque el operador ++ a la derecha de la variable a indica que primero se use su valor en el if (que es 0) y luego se modifique.\\
+Y por lo tanto, la evaluacion de la condicion de if(0) da false y se ejecuta el else.
+\subsection*{Parte b)}
+Imprime "a es mayor que 0" porque el operador ++ a la izquierda de la variable a indica que primero se modifique el valor de a y luego se use su valor en el if (que ahora es 1).\\
+Y por lo tanto, la evaluacion de la condicion de if(1) da true y se ejecuta lo de adentro.\\
+\sectionh{Ejercicio 5}
+\begin{verbatim}
+void printNota (int nota)
+{
+  switch (nota) {
+    case 1:
+    case 2: printf("Aplazado\n");
+            break;
+    case 3:
+    case 4:
+    case 5:
+    case 6: printf("Aceptable\n");
+            break;
+    case 7: 
+    case 8:
+    case 9:
+    case 10: 
+    case 11:
+    case 12: printf("Bien\n");
+             break;
+    default: printf("Fuera de rango\n");
+  }
+}
+\end{verbatim}
+\section*{Ejercicio 6}
+\subsection*{Parte a)}
+Recibe un string y convierte las letras minusculas a mayusculas, empezando desde la ultima hasta la primera.
+\subsection*{Parte b)}
+Si los corchetes contienen un carácter (\textasciicircum), se leen todos los caracteres distintos de los caracteres que se encuentran dentro de los corchetes a continuación del (\textasciicircum). \\
+La sentencia, $ scanf(``\%[\textasciicircum \textbackslash n] " , s);$ lee todos los caracteres que encuentra hasta que llega al carácter nueva línea (\textbackslash n). \\
+Esta sentencia puede utilizarse por tanto para leer líneas completas, con blancos incluidos.
+
+\subsection*{Parte c)}
+Se llama una sola vez a la funcion strlen, en cambio si se hiciera la recorrida en el otro sentido se tendria que llamar cada vez que se evalua la condicion de repeticion del for, porque seria: for( int = 0; i < strlen(s); i++)
+\subsection*{Parte d)}
+El largo maximo de la entrada debe ser de 80 caracteres.\\
+\sectionh{Ejercicio 7}
+\subsection*{Parte a)}
+Define un vector de 5 posiciones del tipo int, pero no lo inicializa (puede contener basura).
+\subsection*{Parte b)}
+Define un vector de 5 posiciones del tipo int, y las inicializa todas a 0.
+\subsection*{Parte c)}
+Define un vector de 5 posiciones del tipo int, e inicializa sus posiciones de la 1ra a la 5ta con los valores: 10, 20, 30, 40 y 50, en ese orden respectivamente.
+\subsection*{Parte d)}
+Define un vector de 5 posiciones (dictadas implicitamente segun la cantidad de valores de inicializacion dados) del tipo int, e inicializa sus posiciones de la 1ra a la 5ta con los valores: 4, 3, 2, 1, 0, en ese orden respectivamente.
+\subsection*{Parte e)}
+Define un vector con el string "hola" donde su tamaño es dado explicito (y es 5 ya que hola tiene 4 posiciones char mas un caracter de fin de linea \textquotesingle \textbackslash0\textquotesingle )
+\subsection*{Parte f)}
+Define un vector bi-dimensional (o matriz) de dimension 3x3.
+\sectionh{Ejercicio 8}
+\sectionh{Ejercicio 9}
+\sectionh{Ejercicio 10}
+\subsection*{Parte a)}
+
+\end{document}

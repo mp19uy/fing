@@ -1,0 +1,161 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage[margin=1in]{geometry}
+\usepackage{underscore}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\title{Resumen del Teórico - Programación 3}
+\author{Martin Pacheco}
+\date{}
+
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+
+
+\maketitle
+\section{Analisis del Algoritmo}
+Consiste en determinar la \textbf{cantidad de operaciones} que realiza el algoritmo.\\ Para ello se tendrán en
+cuenta sólo ciertas operaciones simples de los algoritmos, como suma, comparacion, asignacion, etc. \\
+Es importante notar que cada operación tiene un costo asociado para el compilador que se utilice. \\\\
+Según el contexto y la finalidad del análisis se necesitarán distintos niveles de precisión, por lo
+tanto se verán tres posibles puntos de vista para el análisis:
+\begin{itemize}
+  \item Contar las operaciones simples con sus costos.
+  \item Contar las operaciones simples sin tener en cuenta costos.
+  \item Contar sólo una operación predefinida y/o básica.
+\end{itemize}
+\section{Algoritmo}
+\begin{enumerate}
+  \item Secuencia finita de pasos.
+  \item Cada paso correctamente definido.
+  \item Cada paso debe ejecutarse en un tiempo finito.
+  \item Termina en algún momento.
+  \item Devuelve el resultado esperado.
+  \item Tiene un dominio de definición.
+\end{enumerate}
+\section{Dominio de Definicion}
+Un dominio de definición D, es el conjunto de TODAS las entradas posibles.\\
+Por otro lado el dominio de definición es el conjunto de entradas para la cual fue diseñado el
+algoritmo y en ese sentido asegura la correctitud del mismo. \\ El mismo algoritmo con otro
+dominio de definición, puede no ser correcto. \\\\
+\textbf{Por ejemplo:} si está diseñado para trabajar sobre números
+naturales no tiene porqué funcionar si se pretende usar sobre números reales. \\\\
+\textbf{Notacion:} \\ En general el dominio de definición se expresa en función del tamaño de la entrada.
+\begin{itemize}
+  \item $D_n = \{ E / E \in D, \textbf{Tamaño}(E) = n \} $
+  \item Se denotará \textbf{T(E}) al costo (individual) de la entrada E.
+\end{itemize}
+\section{Analisis}
+Se busca determinar, analizando un algoritmo dado, el costo del mismo expresándolo como una
+función T del tamaño n de la entrada: T(n).
+\subsection{Peor Caso - (W)orst}
+Se obtendrá el mayor costo posible. \\\\
+$\begin{array}{ll}
+T_W(n) = max\{T(E) / E \in D_n \} & \textsc{// costo en el peor caso} \\
+\{E / T(E) = T_W(n), E \in D_n \} & \textsc{// conjunto de entradas que son peor caso}
+\end{array}$
+
+\subsection{Mejor Caso - (B)etter}
+Se tendrá el menor costo posible. \\\\
+$\begin{array}{ll}
+T_B(n) = min\{T(E) / E \in D_n \} & \textsc{// costo en el mejor caso} \\
+\{E / T(E) = T_B(n), E \in D_n \} & \textsc{// conjunto de entradas que son en el mejor caso}
+\end{array}$
+
+\subsection{Caso Promedio - (A)verage}
+Costo en un caso basado en ciertas hipotesis y probabilidades. \\
+$\text{Promedio de TODAS las } T(E), E \in D_n$.\\\\
+$\begin{array}{ll}
+T_A(n) = \displaystyle\sum_{{E \in D_n}} p(E) * T(E) & \textsc{// costo en caso promedio} \\
+\{E / T(E) = T_A(n), E \in D_n\} & \textsc{// conjunto de entradas en caso promedio}\\
+\end{array}$\\\\
+donde $p(E)$ es la probabilidad que se de la entrada E, \textbf{probabilidad EXPERIMENTAL}.\\
+
+\subsection{Ejemplo: Find}
+Encontrar un elemento x dado, en una secuencia A dada, (puede considerarse que todos los
+elementos de la secuencia son distintos), si el elemento está devuelve la posición, sino devuelve el
+valor -1.
+\begin{verbatim}
+//a array of int [0...N-1]
+// n cant elementos;
+int find(int* A, int n, int x){
+  int i = 0;
+  while (i<n) && (A[i]!=x){
+    i++
+  }
+  if (i<n)
+    return i;
+  else
+    return -1;
+}
+\end{verbatim}
+\textbf{\large Análisis} - considerando sólo \textbf{operación básica}.
+\subsubsection{Mejor Caso}
+Secuencia donde x está en el 1er lugar.\\
+$T_B(n) = 1$
+\subsubsection{Peor Caso}
+Hay 2 configuraciones en las que se da el peor caso, estas son cuando:
+\begin{itemize}
+  \item X no está en A
+  \item X es el último elemento de A
+\end{itemize}
+$T_w(n) = n$
+\section{Caso Promedio}
+\textbf{Asumimos} que si $x \in A$, todas las posiciones son equiprobables.\\
+Se parte de y se debe obtener resultados para la expresión: $T_A(n) = \displaystyle\sum_{{E \in D_n}} p(E) * T(E)$\\
+esta expresión debe ser transformada para que resulte práctica.\\\\
+\textbf{Observación:}
+$D_n$ es el conjunto de todas las secuencias de largo n.\\
+En la práctica cabe notar que el algoritmo dado se comporta (ejecuta) de la misma forma para todas las secuencias que tengan a x en un lugar específico i: No interesa el resto de los elementos que compongan la secuencia.\\Si x está en el lugar i-ésimo se realizan i comparaciones y el algoritmo termina. Sucede algo similar si el elemento no está en la secuencia.\\\\
+\textbf{Caso 1:} $x \in A$.\\
+En base a la observación anterior, es posible subdividir $D_n$ en subconjuntos $D_{n_i} \subset D_n$ , donde $D_{n_i}$ está formado por las secuencias que tienen a x en la posición i-ésima, $1 \leq i \leq n$. \\
+Resulta posible modificar el enfoque del problema y considerar que se tienen sólo n entradas $E_i$ , $1 \leq i \leq n$. Serán secuencias que sólo difieren en la posición del elemento x.\\\\
+En ese caso se tendrá:\\
+$p(E_i) = \frac{1}{n}$, debido a la hipótesis de equiprobabilidad de ubicación de \textbf{x en A}.\\\\
+$T(E_i) = i$\\\\
+$T_A(n) = \displaystyle\sum_{i=1}^{n} p(E_i) * T(E_i) = \sum_{i=1}^n \frac{1}{n} * i = \frac{1}{n} * \sum_{i=1}^n i = \frac{1}{n} * \frac{n(n+1)}{2} \Rightarrow T_A(n) = \frac{(n+1)}{2}$\\\\\\
+\textbf{Caso 2:} x puede no estar en A.\\
+Probabilidad de que $x \in A = q$.\\
+Analogamente al \textbf{Caso 1}:
+\begin{enumerate}
+  \item Si $1 \leq i \leq n$, $E_i$ representa las instancias $x \in A$ en el lugar i.
+  \item $E_{n+1}$ representa a las instancias de $x\notin A$.
+\end{enumerate}
+Se tiene:
+\begin{itemize}
+  \item $p(E_i) = \frac{q}{n}, \text{ si } 1\leq i \leq n$
+  \item $p(E_i) = 1-q$
+  \item $T(E_i) = i , \text{ si } 1\leq i \leq n$
+  \item $T(E_{n+1}) = n$
+\end{itemize}
+$T_A(n) = \displaystyle\sum_{i=1}^{n+1} p(E_i) * T(E_i) = (1-q) * n + \sum_{i=1}^n i * \frac{q}{n} = (1-q) * n + \frac{q}{n} * \sum_{i=1}^n i$\\
+$\Rightarrow T_A(n) = \displaystyle\frac{q}{n} * n * \frac{n+1}{2} + (1-q) * n$\\
+$\Rightarrow T_A(n) = \displaystyle q * \frac{n+1}{2} + (1-q) * n$\\\\
+\textbf{Notar:}
+\begin{itemize}
+  \item \textbf{si q = 1}, estamos en el caso 1 y el resultado es idéntico al obtenido antes.
+  \item \textbf{si q = 0}, entonces $x \notin A$ y el costo es n como en el peor caso visto.
+\end{itemize}
+\section{Comportamiento Asintotico}
+En muchos casos resultará de interés investigar el costo de un algoritmo para entradas de tamaño
+n arbitrariamente grande, es decir, \textbf{cuando n tiende a infinito}.\\
+Esto implica que hay términos del costo que se pueden despreciar ya que su aporte es ínfimo.\\\\
+En definitiva interesa determinar la \textbf{tasa de crecimiento de T(n)}.\\
+La tasa de crecimiento exponencial implica una notable mayor sensibilidad al tamaño de la
+entrada y menor sensibilidad a la velocidad de procesamiento.
+
+\section{Nocion Informal}
+T(n) \textbf{es del orden} de f(n) si T(n) es acotada por un múltiplo real positivo de f(n).
+\end{document}

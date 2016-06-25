@@ -1,0 +1,180 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tarea 2 : Parte 2 - Programacion 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[article,12pt]{report}
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+% between \documentclass and \begin{document}.
+\newcommand{\margin}{2cm}
+\usepackage[top=\margin,right=\margin,left=\margin,bottom=\margin]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Another way to Set the margins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[margin=2cm]{geometry} % set the %margins to 2cm on all sides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{framed}
+\usepackage{array}
+\usepackage{enumerate}
+% to use urls
+\usepackage{hyperref}
+% to include figures
+\usepackage{graphicx}
+% great math stuff
+\usepackage{amsmath}
+% for blackboard bold, etc
+\usepackage{amsfonts}
+% better theorem environments
+\usepackage{amsthm}
+% para tildes y eñes y otras yerbas
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+% para links y emails
+\usepackage{hyperref}
+% Use fancyhdr to define our own headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{25pt}
+% Keeps LaTeX happy, takes care of some warnings
+\pagestyle{fancy}
+% Multi rows
+\usepackage{multirow}
+% caracteres
+\usepackage{textcomp}
+% various theorems, numbered by section
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\DeclareMathOperator{\id}{id}
+% for bolding symbols
+\newcommand{\bd}[1]{\mathbf{#1}}
+% for Real numbers
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+% for Integers
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\col}[1]{\left[\begin{matrix} #1 \end{matrix} \right]}
+\newcommand{\comb}[2]{\binom{#1^2 + #2^2}{#1+#2}}
+% Definitions to fill the header with
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\grupo}{Resumen Teórico de Lógica}
+\newcommand{\nombres}{Realizado por Martín Pacheco}
+\newcommand{\semestre}{}
+\newcommand{\materia}{Facultad de Ingeniería}
+\newcommand{\tarea}{Resumen Teórico}
+\newcommand{\version}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redefinition of commands
+\newcommand{\sectionh}[1]{\line(1,0){500}\section*{#1}}
+% Now custimize the header. Make the text bold.
+% We'll get something like:
+%
+% 123456789 LaTeX 101
+% J. Random Student Assignment N Today's Date
+% --------------------------------------------------
+%
+% This layout is pretty simple, and should be enough for an assignment
+% If you want more, you can consult the documentation
+% http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\chead{\textbf{\small \grupo\\ \nombres}}
+
+% Here is an example for customising the numbering
+% It changes the first level of numbering to bolded (a), (b), (c), etc
+%\renewcommand{\theenumi}{\textbf{(\alph{enumi})}}
+%\renewcommand{\labelenumi}{\theenumi}
+% Other options to play with are to change \theenumii, \labelenumii, and enumii for the second level of nesting,
+% and so on to \theenumiv, \labelenumiv, and enumiv for the fourth level of nesting.
+% The possible formats are \arabic (1, 2...), \alph (a, b...), \Alph (A, B...), \roman (i, ii...), and \Roman (I, II...)
+{\setlength{\tabcolsep}{0.7em}
+
+\usepackage{picture}
+% Here begin the document
+\begin{document}
+\subsubsection*{Alfabeto}
+Conjunto dado de simbolos. Ejemplo: $\{a, b\}$
+\subsubsection*{Lenguaje}
+Conjunto de frases o palabras (tiras, secuencias, strings, etc) construidas sobre un \textbf{Alfabeto} dado.
+\subsubsection*{$\bd{\{a, b\}^*}$}
+Se define inductivamente por las siguientes clausulas:
+\begin{enumerate}[i.]
+  \item $\varepsilon \in \{a,b\}^*$
+  \item Si $w \in \{a,b\}^*$, entonces $aw \in \{a,b\}^*$
+  \item Si $w \in \{a,b\}^*$, entonces $bw \in \{a,b\}^*$
+\end{enumerate}
+
+\subsubsection*{$\NN$}
+Definicion inductiva de los naturales:
+\begin{enumerate}[i.]
+  \item $0 \in \NN$
+  \item Si $n \in \NN$, entonces $S(n) \in \NN$
+\end{enumerate}
+(Siendo $S(n)$ el sucesor de n)
+
+\subsubsection*{P.I.P. (Principio de Inducción Primitiva) para $\NN$}
+\begin{itemize}
+  \item Sea $ \bd{P} $ una propiedad sobre los elementos de $\NN$ que cumple:
+  \begin{enumerate}[i.]
+    \item $P(0)$ se cumple
+    \item Si $P(n)$ se cumple, entonces $P(S(n))$ se cumple
+  \end{enumerate}
+  \item Entonces $\bd{P}$ se cumple $\forall n \in \NN$
+\end{itemize}
+
+\subsubsection*{E.R.P. (Esquema de Recursión Primitiva) para $\NN$}
+\begin{itemize}
+  \item Sea $\bd{B}$ un conjunto y sean:
+  \begin{itemize}
+    \item $f_0 \in B$
+    \item $f_S: \NN\times B\rightarrow B$
+  \end{itemize}
+  \item Entonces existe una unica funcion $F:\NN\rightarrow B$ que:
+  \begin{enumerate}[i.]
+    \item $F(0) = f_0$
+    \item $F(S(n))= f_S(n,F(n))$
+  \end{enumerate}
+\end{itemize}
+
+\subsubsection*{PROP (Def 1.1.2)}
+Es el conjunto definido inductivamente por:
+\begin{enumerate}[i)]
+  \item $p_i \in PROP, \forall i \in \NN$
+  \makebox(0,0){\put(0,-3\normalbaselineskip){%
+               $\left.\rule{0pt}{2\normalbaselineskip}\right\}$ formulas atómicas}}
+  \item $\bot \in PROP$
+  \item Si $\alpha \in PROP$ y $\beta \in PROP$, entonces $(\alpha \qedsymbol \beta)$\\
+  $\qedsymbol = \{\wedge, \vee, \rightarrow, \leftrightarrow \} = C$ ( esta notación será utilizada mas adelante)
+  \item Si $\alpha \in PROP$, entonces $(\neg \alpha) \in PROP$
+\end{enumerate}
+Los objetos de $PROP$ se llaman: \textbf{Formulas Proposicionales}
+
+\subsubsection*{$\bd{\sum_{PROP}} (Def 1.1.1)$}
+El alfabeto de la lógica proposicional es el conjunto $\sum_{PROP}$ que consiste de:
+\begin{enumerate}[i)]
+  \item $[$letras de proposicion$]$  $P_i, \forall i \in \NN$
+  \item $[$conectivos$]$ $\bot, \wedge, \vee, \rightarrow, \leftrightarrow$
+  \item $[$simbolos auxiliares$]$ $(\ ,\ )$
+\end{enumerate}
+
+\subsubsection*{Notación}
+C $= \{\wedge, \vee, \rightarrow, \leftrightarrow \}$\\
+AT $= \{\bot, p_0, p_1, ...\}$\\
+P $= \{ p_0, p_1, ...\}$
+
+\subsubsection*{P.I.P. (Principio de Inducción Primitiva) para $PROP$ (Teo 1.1.3)}
+Sea $\bd{P}$ una propiedad sobre $PROP$ que cumple:
+\begin{itemize}
+  \item[PB)] Paso Base
+  \begin{itemize}
+    \item $P(p_i), \forall i \in \NN$
+    \item $P(\bot)$
+  \end{itemize}
+  \item[PI)] Paso Inductivo
+  \begin{itemize}
+    \item Si $P(\alpha)$ y $P(\beta)$ entonces $P((\alpha \qedsymbol \beta))$, $\qedsymbol \in $ C
+    \item Si $P(\alpha)$ entonces $P((\neg \alpha))$
+  \end{itemize}
+\end{itemize}
+Entonces $P(\alpha) \in PROP$
+\end{document}
