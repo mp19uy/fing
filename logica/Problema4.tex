@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{ntheorem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newtheorem*{definition}{Definición}
+\newtheorem*{props}{Propiedades}
+%Margenes
+
+%opening
+\title{Todo lo que querias saber sobre el Ejercicio 4 pero nunca te animaste a preguntar}
+\author{Resumen de Martin Pacheco, digitalizado por Mauricio Irace}
+
+\begin{document}
+\maketitle
+(En todas las secciones se asumira $\Gamma \subseteq PROP$)
+% RECORDAR \models
+% \vdash
+
+\section*{Definiciones}
+
+\begin{definition} \emph{CONS}\\
+	$CONS( \Gamma ) := \{ \varphi \in PROP : \Gamma \vdash  \varphi \}$
+\end{definition}
+\begin{definition}
+
+\emph{Teoría}\\
+	$\Gamma$ es Teoría $ \Leftrightarrow CONS(\Gamma)\subseteq \Gamma$ \\ 
+	 (Si $ \Gamma \vdash \varphi$ entonces $\varphi \in \Gamma$)
+\end{definition}
+
+\begin{definition}
+	\emph{Consistente}\\
+	$\Gamma$ es Consistente $ \Leftrightarrow \bot \in CONS(\Gamma)$ \\
+	($ \Gamma \cancel{\vdash} \bot$)
+\end{definition}
+
+\begin{definition}
+	\emph{Consistente Maximal}\\
+	$\Gamma$ es Consistente Maximal $\Leftrightarrow$
+	$\left\{\begin{array}{l}
+		 \text{\textbullet}\ \ \Gamma \textnormal{ es Consistente} \\ 
+     \text{\textbullet}\ \ \left\{ \begin{array}{l}
+      \overline{\forall} \Delta \textnormal{ Consistente: } ( \Gamma \subseteq \Delta \Rightarrow \Gamma = \Delta ) \\
+     \Leftrightarrow \textnormal{ (otra interpretación equivalente)}\\
+		 \overline{\forall} \Delta \textnormal{, Si } \Gamma \subset \Delta \Rightarrow \Delta \textnormal{ es Inconsistente} \\
+		 \textnormal{ (Notar $\subset$ es Contenido Estricto) }
+     \end{array} 
+		 \right.
+	 \end{array}
+	 \right.$
+
+\end{definition}
+
+\begin{definition}
+\emph{Completo} \\
+$\Gamma$ es Completo $\Leftrightarrow$ $\left\{ \begin{array}{l} \text{\textbullet}\ \ \Gamma \textnormal{es Consistente} \\
+ \text{\textbullet}\ \  \overline{\forall} \varphi \in PROP \textnormal{ o bien } \Gamma \vdash \varphi \textnormal{ o } \Gamma \vdash \neg \varphi
+  \end{array}
+  \right.$
+\end{definition}
+
+\section*{Propiedades}
+
+\begin{props} CONS \\
+
+	\begin{itemize}
+		\item $ CONS( \emptyset) = \{ \varphi \in  PROP :$ $ \vdash \varphi  \}$ (Teoremas)
+		\item $ CONS(\{ \bot \}) = PROP$
+		\item $ A \subseteq B \Rightarrow CONS(A) \subseteq CONS(B)$
+		\item $CONS(CONS(\Gamma)) = CONS(\gamma)$
+		\item $CONS(\Gamma)$ es Teoría (se deduce de lo anterior)
+		\item $\Gamma \subseteq CONS(\Gamma)$
+	\end{itemize}
+\end{props}
+
+\begin{props} Teoría \\
+
+	\begin{itemize}
+		\item 	$\Gamma $ es Teoría $\Rightarrow \Gamma = CONS(\Gamma)$
+	\end{itemize}
+\end{props}
+
+\begin{props} Consistente\\
+	Recordando que $v(\Gamma) = 1\Leftrightarrow(\overline{\forall}\varphi \in \Gamma)v(\varphi)=1$
+	\begin{itemize}
+		\item $\Gamma$ es Consistente $\Leftrightarrow (\overline{\exists}v :$ Valuación $)v(\Gamma)=1$ 
+	\end{itemize}
+
+\end{props}
+	
+\begin{props}Inconsistente\\
+
+	\begin{itemize}
+		\item$\Gamma$ es Inconsistente $\Leftrightarrow \bot \in CONS(\Gamma) \Leftrightarrow \Gamma \vdash \bot$\\
+		$\Leftrightarrow \overline{\forall}\varphi \in PROP$, $\Gamma \vdash \varphi$\\
+		$\Leftrightarrow \overline{\exists}\varphi \in PROP $, $\Gamma \vdash \varphi$ y $\Gamma \vdash \neg\varphi$
+		\item $\Gamma \bigcup \{\varphi\}$ es Inconsistente $\Rightarrow \Gamma \vdash \neg \varphi$		
+	\end{itemize}
+
+\end{props}
+\begin{props}Consistente Maximal\\
+
+	\begin{itemize}
+		\item $\Gamma$ es Consistente Maximal (CM) entonces:
+			\begin{itemize}
+				\item $\Gamma$ es Teoría
+				\item $\varphi \in \Gamma \Leftrightarrow \neg \varphi \cancel{\in} \Gamma$
+				\item $\overline{\forall}\varphi \in PROP, \varphi \in \Gamma$ o $\neg\varphi \in \Gamma$ (Pero no ambos)
+				
+			\end{itemize}
+		\item $\Gamma$ CM $\Leftrightarrow \Gamma$ es Teoría y ($\overline{\exists}! v : $Valuación)$v(\Gamma) = 1$
+	\end{itemize}
+\begin{props}Completo\\
+	$\Gamma$ es Completo Sii
+	\begin{itemize}
+		\item $CONS(\Gamma)$ es CM
+		\item $\overline{\exists}! v: $ Valuación $v(\Gamma) = 1$
+	\end{itemize}
+\end{props}
+\end{props}	
+\end{document}

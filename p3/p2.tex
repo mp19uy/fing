@@ -137,14 +137,14 @@
   \item Suma desde 1 a n:
   \begin{itemize}
     \item (1) OP <= aplicada a: i y n.
-    \item (1) OP = aplicada a: j y 0. Al entrar por primera vez al for.
+    \item (1) OP = aplicada a: j y 1. Al entrar por primera vez al for.
     \item Suma desde 1 a $i$:
       \begin{itemize}
         \item (1) OP <= aplicada a: j y i.
         \item (1) OP ++ aplicada a: sum.
         \item (1) OP ++ aplicada a: j.
       \end{itemize}
-    \item (1) OP <= aplicada a: j y n. Al salir del for.
+    \item (1) OP <= aplicada a: j y i. Al salir del for.
   \end{itemize}
 \item (1) OP <= aplicada a: i y n. Al salir del for.
 \end{itemize}
@@ -166,5 +166,51 @@
 \subsubsection*{Orden}
 Como el Tiempo Exacto es: $\displaystyle 4n^3 + 4n + 3$\\
 Entonces $\mathbf{T(n) = n^3}$
-
+\pagebreak
+\subsection*{Parte 5)}
+\begin{itemize}
+  \item (1) operacion = aplicada a: sum y 0.
+  \item (1) OP = aplicada a: i y 1. Al entrar por primera vez al for.
+  \item Suma desde 1 a n:
+  \begin{itemize}
+    \item (1) OP <= aplicada a: i y n.
+    \item (1) OP = aplicada a: j y 1. Al entrar por primera vez al for.
+    \item Suma desde 1 a $i^2$:
+      \begin{itemize}
+        \item (1) OP * aplicada a: i y i.
+        \item (1) OP <= aplicada a: j y el resultado de i*i.
+        \item (1) OP = aplicada a: k y 1. Al entrar por primera vez al for.
+        \item Suma desde 1 a j:
+        \begin{itemize}
+          \item (1) OP <= aplicada a: k y j.
+          \item (1) OP ++ aplicada a: sum.
+          \item (1) OP ++ aplicada a: k.
+        \end{itemize}
+        \item (1) OP <= aplicada a: k y j. Al salir del for.
+        \item (1) OP ++ aplicada a: j.
+      \end{itemize}
+    \item (1) OP * aplicada a: i y i. Al salir del for.
+    \item (1) OP <= aplicada a: j y resutado de i*i. Al salir del for.
+    \item (1) OP ++ aplicada a: i.
+  \end{itemize}
+\item (1) OP <= aplicada a: i y n. Al salir del for.
+\end{itemize}
+\line(1,0){200}
+\subsubsection*{Exacto}
+\begin{align*}
+&T(n) = 1+1+\sum_{i=1}^{n}\left(1+1+\sum_{j=1}^{i^2}{\left(1+1+1+\sum_{k=1}^{j}{(1+1+1)}+1+1\right)}+1+1+1\right) + 1\\
+&T(n) = 3 + \sum_{i=1}^{n}{(5+\sum_{j=1}^{i^2}{(5+3j)})} \\ 
+&\mathbf{T(n) = 4(n^3+n)+3}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{En base a Op: sum++}
+\begin{align*}
+&T(n) = \sum_{i=1}^{n}\left(\sum_{j=1}^{n^2}(1)\right)\\
+&T(n) = n \cdot n^2 \cdot 1\\
+&\mathbf{T(n) = n^3}
+\end{align*}
+\line(1,0){200}
+\subsubsection*{Orden}
+Como el Tiempo Exacto es: $\displaystyle 4n^3 + 4n + 3$\\
+Entonces $\mathbf{T(n) = n^3}$
 \end{document}

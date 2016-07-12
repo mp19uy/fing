@@ -1,0 +1,81 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage[margin=1in]{geometry}
+\usepackage{underscore}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[normalem]{ulem}
+\usepackage{cancel}
+\title{Titulo}
+\author{Autor}
+\date{Fecha}
+\newcommand{\dstr}[1]{\mathbb{#1}}
+\newcommand{\RR}{\dstr{R}}
+\newcommand{\CC}{\dstr{C}}
+\newcommand{\bd}[1]{\mathbf{#1}}
+\pdfinfo{%
+  /Title    ()
+  /Author   ()
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\section*{Multiple Opción}
+\subsection*{Ejercicio 1}
+Sean $a \in \RR$ y $z_0 \in \CC$.\\
+Si $z=x+iy$, que representa la ecuación $z\bar{z} + z_0 \bar{z} + \bar{z_0} z + a = 0$ en el plano $xy$?\\
+ \\
+Considero $z_0 = b + ic$, luego:\\\\
+$\begin{array}{ccccccccc}
+z\bar{z} & + & z_0 \bar{z} & + & \bar{z_0} z & + & a & = & 0 \\
+x^2 + y^2 & + & (b+ic)(x-iy) & + & (b-ic)(x+iy) & + & a & = & 0 \\
+x^2 + y^2 & + & bx + cy + i(cx - by) & + & bx + cy - i(cx - by) & + & a & = & 0\\
+x^2 + y^2 & + & bx + cy\ \cancel{+ i(cx - by)} & + & bx + cy\ \cancel{- i(cx - by)} & + & a & = & 0
+\end{array}$\\\\\\
+$\Rightarrow x^2 + y^2 + 2bx + 2cy + a = 0$\\\\
+Recordando la ecuación de la circunferencia:\\ 
+$x^2 + y^2 + Ax + By + C = 0\ (A,B,C \in \RR)$, 
+y $\left\{ \begin{array}{l}
+  \displaystyle \bd{Centro} = \left(-\frac{A}{2}, -\frac{B}{2} \right)  \\
+   \\
+   \displaystyle \bd{Radio} = \sqrt{\frac{A^2}{4} + \frac{B^2}{4} - C}
+  \end{array} \right.$\\
+  Tenemos $A = 2b$, $B = 2c$ y $C = a$ y:\\
+  $\displaystyle \sqrt{\frac{A^2}{4} + \frac{B^2}{4} - C} = \sqrt{\frac{{(2b)}^2}{4} + \frac{{(2c)}^2}{4} - a} = \sqrt{\frac{4b^2}{4} + \frac{4c^2}{4} - a} = \sqrt{b^2 + c^2 - a} = \sqrt{{|z_0|}^2 - a}$\\\\
+Entonces es una circunferencia si ${|z_0|}^2 - a > 0 \Leftrightarrow {|z_0|}^2 > a$
+
+\subsection*{Ejercicio 2}
+$a_n = \displaystyle \int_0^{\frac{\pi}{4}}\frac{cos x - sen x}{(sen x + cos x)^{n+1}} dx$  y  $b_n = \displaystyle \frac{1}{n} - a_n$, con $n \in \RR$\\
+(I) $\displaystyle \sum_{n=1}^{+\infty}a_n$ y (II) $\displaystyle \sum_{n=1}^{+\infty}b_n$, estudiar convergencia de la series.\\\\\\
+Haciendo cambio de variable:\\
+$u = sen x + cos x \\
+du = cos x - sen x$\\\\
+Extremos:\\
+$sen(0) + cos(0) = 1 \\
+sen(\frac{\pi}{4}) + cos(\frac{\pi}{4}) = \sqrt{2}$\\\\
+
+$\displaystyle \int_1^{\sqrt{2}}\frac{1}{u^{n+1}} dx = \frac{-1}{n u^n} \bigg|_{1}^{\sqrt{2}} = \frac{-1}{n \sqrt{2}^n} + \frac{1}{n 1^n} = \fbox{$\displaystyle \frac{1}{n} - \frac{1}{n \sqrt{2}^n} = a_n$}$ y \fbox{$\displaystyle b_n = \frac{1}{n \sqrt{2}^n}$}\\\\
+Aplicamos el criterio del cociente para series sobre $b_n$, el cual dice:\\
+$a_n > 0$\\
+Si para $n > n_0$ $\left\{ \begin{array}{ll} \frac{a_{n+1}}{a_n} \leq k < 1 & \Rightarrow \sum a_n \text{ converge} \\ \frac{a_{n+1}}{a_n} \geq 1 & \Rightarrow \sum a_n \text{ diverge} \end{array} \right. $\\\\
+$ \displaystyle \lim_{n\rightarrow\infty}\frac{\frac{1}{(n+1) \sqrt{2}^{n+1}}}{\frac{1}{n \sqrt{2}^n}} = \lim_{n\rightarrow \infty}\frac{n \sqrt{2}^n}{(n+1) \sqrt{2}^{n+1}} = \lim_{n\rightarrow\infty} \frac{n}{(n+1)\sqrt{2}} = \lim_{n\rightarrow\infty} \frac{n}{\sqrt{2}n + \sqrt{2}} = \frac{1}{\sqrt{2}} < 1$\\\\
+$\Rightarrow b_n $ converge\\\\
+Se sabe que $\displaystyle \sum_{n=1}^{+\infty} \frac{1}{n}$ diverge, entonces si: $\displaystyle a_n = \underbrace{\frac{1}{n}}_\text{Diverge} - \underbrace{\frac{1}{n \sqrt{2}^n}}_\text{Converge}$\\
+Y la suma de algo que diverge menos algo que converge, evidentemente sigue divergiendo.\\
+$\Rightarrow a_n$ diverge.
+
+\subsection*{Ejercicio 4}
+Sea $\displaystyle F(x) = \int_{\pi}^{x} \frac{e^t}{3+sen(t)} dt$, cual es el valor de $(F^{-1})'(0)$?\\\\
+Se cumple que $\displaystyle (F^{-1})'(0) = \frac{1}{F'(F^{-1}(0))}$\\
+Y $F^{-1}(0) = A \Leftrightarrow F(A) = 0$, y esto sucede cuando $x = \pi$ en $F(x)$ ya que:\\
+$\displaystyle F(\pi) = \int_{\pi}^{\pi} \frac{e^t}{3+sen(t)} dt = 0$, puesto que una integral evaluada entre $\pi$ y $\pi$ vale 0.\\\\
+Entonces $F^{-1}(0) = A = \pi$  y ahora solo resta evalular $F'(F^{-1}(0)) = F'(\pi)$.\\
+F'(x) por ser $\frac{e^t}{3+sen(t)}$ continua (composición de funciones continuas) $\forall x \in \RR$, entonces puedo aplicar el Teorema Fundamental del Cálculo que dice que $\displaystyle F'(x) = \frac{e^x}{3+sen(x)}$.\\
+$\displaystyle F'(\pi) = \frac{e^\pi}{3+sen(\pi)} = \frac{e^\pi}{3}$ y finalmente $(F^{-1})'(0) = \displaystyle \frac{1}{ \frac{e^\pi}{3}} = \frac{3}{e^\pi} = 3 e^{-\pi}$
+\end{document}

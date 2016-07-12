@@ -178,16 +178,16 @@ En la siguiente tabla se considera 32 bits (2 bytes) para int.
 \end{itemize}
 \begin{tabular}{|l|l|l|l|l|}
   \hline \textbf{Datos} &  \textbf{Derivadores} & \textbf{Basicos} & \textbf{Tamaño} & \textbf{Rango} \\
-  \hline\multirow{11}{*}{\textbf{Enteros}} & short & (int) & 16 bits (2 bytes) & [-32768 , 32767]\\
-   \cline{2-5} & long & (int) & 32 bits (4 bytes) & $\begin{matrix}$[-2.147.483.648$,\\$\ \ 2.147.483.647$]\end{matrix}$\\
-   \cline{2-5} & long long & (int) & 64 bits (8 bytes) & $\begin{matrix}[$-9.223.372.036.854.775.808$, \\$\ \ 9.223.372.036.854.775.807$]
+  \hline\multirow{11}{*}{\textbf{Enteros}} & short & (int) & 16 bits (2 bytes) & [-32.768 / -($2^{15}$) , 32.767 / $2^{15} - 1$]\\
+   \cline{2-5} & long & (int) & 32 bits (4 bytes) & $\begin{matrix}$[-2.147.483.648 / -($2^{31}$)$ ,\\$\ \ 2.147.483.647 / $2^{31}$$]\end{matrix}$\\
+   \cline{2-5} & long long & (int) & 64 bits (8 bytes) & $\begin{matrix}[$-9.223.372.036.854.775.808 / $-(2^{63})$$, \\$\ \ 9.223.372.036.854.775.807 / $2^{63} - 1$$]
    \end{matrix}$\\
   \cline{2-5} & \multirow{2}{*}{signed} & int & \multirow{7}{*}{El mismo.} & [-32768 , 32767]\\
-  \cline{3-3}\cline{5-5} & & char & &[-128 , 127] \\
-   \cline{2-3}\cline{5-5} & \multirow{5}{*}{unsigned} & int & & [0 , 65535]\\
-   \cline{3-3}\cline{5-5} & & char & & [0 , 255] \\ 
-   \cline{3-3}\cline{5-5} &  & long (int) & & [0 , 4.294.967.295]\\
-   \cline{3-3}\cline{5-5} &  & long long (int) & & $\begin{matrix}[$0 ,$\hfill \\$18.446.744.073.709.551.615$]
+  \cline{3-3}\cline{5-5} & & char & &[-128 / $-(2^7)$, 127/$2^7 - 1$] ,\\
+   \cline{2-3}\cline{5-5} & \multirow{5}{*}{unsigned} & int & & [0 , 65535 / $2^{16} - 1$]\\
+   \cline{3-3}\cline{5-5} & & char & & [0 , 255 / $2^8 - 1$ ] \\ 
+   \cline{3-3}\cline{5-5} &  & long (int) & & [0 , 4.294.967.295 / $2^{32} - 1$]\\
+   \cline{3-3}\cline{5-5} &  & long long (int) & & $\begin{matrix}[$0 ,$\hfill \\$18.446.744.073.709.551.615 / $2^{64} - 1$$]
    \end{matrix}$\\
   \hline
 \end{tabular} \\
@@ -371,12 +371,12 @@ g++ programa.cpp -o programa.exe
 programa.exe
 \end{verbatim}
 \subsection*{Parte a)}
-\subsubsection*{Respuesta:}
+\subsubsection*{Salida en Pantalla:}
 \begin{verbatim}
 Programa 1.
 \end{verbatim}
 \subsection*{Parte b)}
-\subsubsection*{Respuesta:}
+\subsubsection*{Salida en Pantalla:}
 \begin{verbatim}
 Ingrese un entero: 10
 Entero ingresado: 10
@@ -412,32 +412,8 @@ void printNota (int nota)
   }
 }
 \end{verbatim}
-\section*{Ejercicio 6}
-\subsection*{Parte a)}
-Recibe un string y convierte las letras minusculas a mayusculas, empezando desde la ultima hasta la primera.
-\subsection*{Parte b)}
-Si los corchetes contienen un carácter (\textasciicircum), se leen todos los caracteres distintos de los caracteres que se encuentran dentro de los corchetes a continuación del (\textasciicircum). \\
-La sentencia, $ scanf(``\%[\textasciicircum \textbackslash n] " , s);$ lee todos los caracteres que encuentra hasta que llega al carácter nueva línea (\textbackslash n). \\
-Esta sentencia puede utilizarse por tanto para leer líneas completas, con blancos incluidos.
-
-\subsection*{Parte c)}
-Se llama una sola vez a la funcion strlen, en cambio si se hiciera la recorrida en el otro sentido se tendria que llamar cada vez que se evalua la condicion de repeticion del for, porque seria: for( int = 0; i < strlen(s); i++)
-\subsection*{Parte d)}
-El largo maximo de la entrada debe ser de 80 caracteres.\\
-\sectionh{Ejercicio 7}
-\subsection*{Parte a)}
-Define un vector de 5 posiciones del tipo int, pero no lo inicializa (puede contener basura).
-\subsection*{Parte b)}
-Define un vector de 5 posiciones del tipo int, y las inicializa todas a 0.
-\subsection*{Parte c)}
-Define un vector de 5 posiciones del tipo int, e inicializa sus posiciones de la 1ra a la 5ta con los valores: 10, 20, 30, 40 y 50, en ese orden respectivamente.
-\subsection*{Parte d)}
-Define un vector de 5 posiciones (dictadas implicitamente segun la cantidad de valores de inicializacion dados) del tipo int, e inicializa sus posiciones de la 1ra a la 5ta con los valores: 4, 3, 2, 1, 0, en ese orden respectivamente.
-\subsection*{Parte e)}
-Define un vector con el string "hola" donde su tamaño es dado explicito (y es 5 ya que hola tiene 4 posiciones char mas un caracter de fin de linea \textquotesingle \textbackslash0\textquotesingle )
-\subsection*{Parte f)}
-Define un vector bi-dimensional (o matriz) de dimension 3x3.
-\sectionh{Ejercicio 8}
+\sectionh{Ejercicio 6, 7 y 8}
+Se encuentran las soluciones oficiales en la página del curso.\\
 \sectionh{Ejercicio 9}
 \sectionh{Ejercicio 10}
 \subsection*{Parte a)}
