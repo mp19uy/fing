@@ -1,0 +1,269 @@
+\documentclass[10pt,spanish]{article}  
+\usepackage[spanish]{babel} %Indica que escribiermos en español
+\usepackage[utf8]{inputenc} %Indica qué codificación se está usando ISO-8859-1(latin1)  o utf8 
+\selectlanguage{spanish}
+
+%%%%%%% DEFINICIÓN DE VARIABLES %%%%%%%%%%%%%%%%%%%
+\newcommand{\Tarea}{Tarea \{ \# \}}
+\newcommand{\Titulo}{Informe del Modelo de Casos de Uso}
+\newcommand{\Materia}{\{ MATERIA \}}
+\newcommand{\Curso}{Curso \{ AÑO \}}
+\newcommand{\Grupo}{Grupo \{ NRO \}}
+% Nombre y Cedulas de los integrantes del grupo
+\newcommand{\NomIntegrUno}{Integrante 1}
+\newcommand{\CiIntegrUno}{CI}
+\newcommand{\NomIntegrDos}{Integrante 2}
+\newcommand{\CiIntegrDos}{CI}
+\newcommand{\NomIntegrTres}{Integrante 3}
+\newcommand{\CiIntegrTres}{CI}
+\newcommand{\NomIntegrCuatro}{Integrante 4}
+\newcommand{\CiIntegrCuatro}{CI}
+\newcommand{\NomIntegrCinco}{Integrante 5}
+\newcommand{\CiIntegrCinco}{CI}
+% Nombre del Docente
+\newcommand{\NomDocente}{Nombre Docente}
+% Texto del Encabezado
+\newcommand{\EncabezadoIzq}{Universidad de la República}
+\newcommand{\EncabezadoMed}{Facultad de Ingeniería}
+\newcommand{\EncabezadoDer}{Instituto de Computación}
+
+%%%%%%%% PREÁMBULO %%%%%%%%%%%%
+
+\usepackage{amsmath} % Comandos extras para matemáticas (cajas para ecuaciones,
+% etc)
+\usepackage{amssymb} % Simbolos matematicos (por lo tanto)
+\usepackage{graphicx} % Incluir imágenes en LaTeX
+\usepackage{color} % Para colorear texto
+\usepackage{subfigure} % subfiguras
+\usepackage{float} %Podemos usar el especificador [H] en las figuras para que se queden donde queramos
+\usepackage{capt-of} % Permite usar etiquetas fuera de elementos flotantes
+% (etiquetas de figuras)
+\usepackage{sidecap} % Para poner el texto de las imágenes al lado
+	\sidecaptionvpos{figure}{c} % Para que el texto se alinie al centro vertical
+\usepackage{caption} % Para poder quitar numeracion de figuras
+\usepackage{commath} % funcionalidades extras para diferenciales, integrales,
+% etc (\od, \dif, etc)
+\usepackage{cancel} % para cancelar expresiones (\cancelto{0}{x})
+\usepackage{tabularx}
+
+% MARGENES 
+\usepackage{anysize} 					% Para personalizar el ancho de  los márgenes
+\marginsize{2cm}{2cm}{2cm}{2cm} % Izquierda, derecha, arriba, abajo
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{\baselineskip}
+
+% Para que las referencias sean hipervínculos a las figuras o ecuaciones aparezcan en color
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue]{hyperref}
+%\usepackage{hyperref} 
+
+% ENCABEZADO Y PIE DE PÁGINA
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\EncabezadoIzq} %encabezado izquierda
+\fancyhead[C]{\EncabezadoMed} %encabezado centro
+\fancyhead[R]{\EncabezadoDer}   % dereecha
+
+\fancyfoot[R]{\Curso}  % Pie derecha
+\fancyfoot[C]{\thepage}  % centro
+\fancyfoot[L]{\Tarea}  %izquierda
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[
+  topline=false, %oculta linea arriba
+  bottomline=false, % oculta linea abajo
+  rightline=false, % oculta linea derecha
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{siderules}
+
+\numberwithin{figure}{section} % numeración de figuras por seccion
+\usepackage[font=bf,labelfont=bf]{caption} % setea estilo bf (bold) a los caption (texto y label)
+
+\usepackage[compact]{titlesec} %Formato de las secciones
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+
+\usepackage{etoolbox} % Agrega puntos a las sections en el TOC
+\makeatletter
+\patchcmd{\l@section}
+  {\hfil}
+  {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill}
+  {}{}
+\makeatother
+
+% Corrige los margenes en las tablas
+\setlength{\tabcolsep}{.5em}
+
+
+
+\title{\Tarea - \Titulo}
+
+%%%%%%%% TERMINA PREÁMBULO %%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}{0.48\textwidth} \begin{flushleft}
+\end{flushleft}\end{minipage}
+
+%%%
+\begin{center}																		%%%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}									%%%\left
+ 																					%%%
+
+
+													 								%%%
+\vspace*{1cm}								%%%
+																				%%%	
+\textsc{\huge \Materia}\\[1.5cm]	
+
+\textsc{\huge \Tarea				%%%
+}\\[1.5cm]													%%%
+
+    																				%%%
+\vspace*{1cm}																		%%%
+																					%%%
+\HRule \\[0.4cm]																	%%%
+{ \huge \bfseries \Titulo}\\[0.3cm]	%%%
+ 																					%%%
+\HRule \\[4cm]																	%%%
+ 																				%%%
+																					%%%
+\begin{minipage}{0.8\textwidth}													%%%
+\begin{flushleft} \large															%%%
+\textsc{\LARGE \Grupo}\\
+\LARGE{\textbf{Integrantes}}\\	
+\Large
+\vspace{0.3cm}
+  \begin{tabular}{ | p{10cm} | p{2.5cm} | }
+    \hline
+    \textbf{Nombre} & \textbf{CI} \\ \hline
+    \NomIntegrUno & \CiIntegrUno \\ \hline
+    \NomIntegrDos & \CiIntegrDos  \\ \hline 
+    \NomIntegrTres & \CiIntegrTres \\ \hline
+    \NomIntegrCuatro & \CiIntegrCuatro \\ \hline
+    \NomIntegrCinco & \CiIntegrCinco \\ \hline
+  \end{tabular}\\[0.5cm]
+\LARGE{\textbf{Docente}}\\	
+\Large
+\vspace{0.3cm}
+\begin{tabular}{ | p{10cm} |}
+    \hline
+     \NomDocente \\ 
+     \hline
+  \end{tabular}
+\end{flushleft}																		%%%
+\end{minipage}		
+																%%%
+\begin{minipage}{0.52\textwidth}		
+\vspace{-0.6cm}											%%%
+\begin{flushright} \large															%%%
+\emph{} \\																	%%%
+													%%%
+\end{flushright}																	%%%
+\end{minipage}	
+\begin{flushleft}
+ 	
+\end{flushleft}
+%%%
+ 		\flushleft{\textbf{}	}\\																		%%%								  						
+\end{center}							 											
+																					
+%%%%%%%%%%%%%%%%%%%% TERMINA PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introducción}
+\subsection{Propósito}
+El propósito de este documento es brindar una descripción general del Modelo de Casos de Uso.
+
+\subsection{Alcance}
+El informe del Modelo de Casos de Uso presenta una descripción de los casos de uso definidos, los actores y las asociaciones entre estos. También contiene una especificación del comportamiento declarado en los casos de uso.
+
+\subsection{Estructura del Documento}
+El documento está dividido en tres secciones. La segunda sección presenta una descripción de los actores y casos de uso contenidos en el modelo junto con las relaciones existentes entre ellos. Por último, la tercera sección presenta la especificación del comportamiento de cada caso de uso descrito.
+
+\begin{siderules}
+A lo largo de esta plantilla se encuentran comentarios y ejemplos acerca del contenido del documento a elaborar a partir de ésta. Éstos se encuentran indicados, al igual que este párrafo, por una línea a lo largo de su borde izquierdo. Estas secciones deben ser eliminadas de la versión final del documento.
+\end{siderules}
+
+\section{Actores y Casos de Uso}
+Se presenta una descripción de los actores involucrados en el modelo de Casos de Uso y una descripción de alto nivel de los casos de uso del sistema. Cada caso de uso incluye una sección con los actores involucrados en él.
+
+\subsection{Actores}
+\begin{siderules}
+Se incluye una breve descripción de cada uno de los actores involucrados. Cada actor está descrito de la siguiente manera:\\[10px]
+\begin{tabularx}{\textwidth}{| l | X @{}| } %La segunda columna es del tamaño maximo hasta el margen derecho
+    \hline
+    Actor & Nombre del actor \\ \hline
+    Descripción & Valor del tagged value ``documentation'' del actor con una descripción del mismo. \\ \hline
+\end{tabularx}
+\end{siderules}
+
+\subsection{Casos de Uso}
+\begin{siderules}
+Cada caso de uso está descrito de la siguiente manera:\\[10px]
+\begin{tabularx}{\textwidth}{| l | X @{}| } %La segunda columna es del tamaño maximo hasta el margen derecho
+    \hline
+    Nombre & Nombre del caso de uso \\ \hline
+    Actores & Nombre de los actores participantes \\ \hline
+    Descripción & Descripción en alto nivel del caso de uso \\ \hline
+\end{tabularx}
+\end{siderules}
+
+\section{Comportamiento de Casos de Uso}
+A continuación se presenta la especificación del comportamiento de cada caso, por medio de los Diagramas de Secuencia del Sistema que sean necesarios, y los contratos de software de todas las operaciones del sistema incluidas en dichos diagramas.
+
+El formato que tendrá la especificación de comportamiento es el siguiente.
+
+\subsection{Nombre del Caso de Uso}
+\subsubsection{Diagramas de Secuencia del Sistema}
+Se muestran mediante diagramas de secuencia del sistema los eventos de interés derivados del caso de uso. Eventualmente puede agregarse una descripción textual explicando las partes más relevantes de los mismos.
+
+
+{\color{red} 
+Para cada Diagrama de Secuencia del Sistema deberá especificarse si el sistema tiene o no memoria, y en caso de tenerla se debe especificar claramente qué información recuerda.
+}
+
+\subsubsection{Contratos}
+\begin{siderules}
+En este punto se presenta un contrato para cada una de las operaciones de los diagramas de secuencia del sistema de la sección anterior.
+
+Es común que algunas operaciones del sistema aparezcan en más de un diagrama de secuencia del sistema. En este caso el contrato correspondiente a dicha operación se deberá presentar una única vez, la primera vez que se documente la operación. Cada vez que aparezca una operación ya descrita, se agrega una referencia indicando la sección en donde se encuentra esa descripción.
+
+Cada contrato va a estar compuesto por el nombre del contrato, la operación a la cual se le está realizando el contrato, una descripción en lenguaje natural explicando el cometido de la operación y las pre/post condiciones expresadas en lenguage natural que se aplican a la operación del sistema. También a los efectos de ilustrar el efecto de la operación sobre el sistema, es posible incluir \textbf{\underline{en forma opcional}} Snapshots que ejemplifiquen los cambios de estado.\\
+
+\begin{tabularx}{\textwidth}{| l | X @{}| } %La segunda columna es del tamaño maximo hasta el margen derecho
+    \hline
+    \textbf{Operación} & \verb|NombreOperacion(par1:Tipo1, par2:Tipo2,...):TipoRetorno| \\ \hline 
+    \textbf{Entrada} & Descripción de los parámetros de entrada de la operación. \\ \hline
+	\textbf{Salida} & Descripción de la salida de la operación. \\ \hline
+    \textbf{Descripción} & Descripción de qué es lo que hace la operación. \\ \hline
+\end{tabularx}\\ \\
+
+\begin{tabularx}{\textwidth}{| l | X @{}| } %La segunda columna es del tamaño maximo hasta el margen derecho
+    \cline{1-1}
+    \textbf{Precondiciones y Postcondiciones} & \multicolumn{1}{|c}{} \\ \hline
+    \multicolumn{2}{|X @{}|}{
+    \begin{tabular}{ >{\ttfamily\catcode`_=12 }l}
+    Pre: Descripción de las condiciones sobre los parámetros de la operación. \\
+Pre: Descripción sobre las condiciones del estado del sistema. \\
+… \\
+Post: Descripción de las modificaciones ocurridas en el sistema. \\
+Post: Descripción del resultado de la operación.
+\end{tabular}
+} \\ \hline
+    
+    
+\end{tabularx}
+
+\end{siderules}
+
+
+\end{document}
