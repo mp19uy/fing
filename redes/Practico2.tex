@@ -1,0 +1,305 @@
+\documentclass[10pt,spanish]{article}  
+\usepackage[spanish,es-nodecimaldot]{babel} %Indica que escribiermos en español y que no cambie los puntos y comas matematicos de ingles a español
+
+\usepackage[utf8]{inputenc} %Indica qué codificación se está usando ISO-8859-1(latin1)  o utf8 
+\selectlanguage{spanish}
+
+%%%%%%% DEFINICIÓN DE VARIABLES %%%%%%%%%%%%%%%%%%%
+\newcommand{\Practico}{Practico 2}
+\newcommand{\Titulo}{Letra y Soluciones Oficiales del Kurose}
+\newcommand{\Materia}{Redes de Computadoras}
+
+%%%%%%%% PREÁMBULO %%%%%%%%%%%%
+
+\usepackage{amsmath} % Comandos extras para matemáticas (cajas para ecuaciones,
+% etc)
+\usepackage{amssymb} % Simbolos matematicos (por lo tanto)
+\usepackage{graphicx} % Incluir imágenes en LaTeX
+\usepackage{color} % Para colorear texto
+\usepackage{subfigure} % subfiguras
+\usepackage{float} %Podemos usar el especificador [H] en las figuras para que se queden donde queramos
+\usepackage{capt-of} % Permite usar etiquetas fuera de elementos flotantes
+% (etiquetas de figuras)
+\usepackage{sidecap} % Para poner el texto de las imágenes al lado
+	\sidecaptionvpos{figure}{c} % Para que el texto se alinie al centro vertical
+\usepackage{caption} % Para poder quitar numeracion de figuras
+\usepackage{commath} % funcionalidades extras para diferenciales, integrales,
+% etc (\od, \dif, etc)
+\usepackage{cancel} % para cancelar expresiones (\cancelto{0}{x})
+
+
+% MARGENES 
+\usepackage{anysize} 					% Para personalizar el ancho de  los márgenes
+\marginsize{2cm}{2cm}{2cm}{2cm} % Izquierda, derecha, arriba, abajo
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{\baselineskip}
+
+% Para que las referencias sean hipervínculos a las figuras o ecuaciones aparezcan en color
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue]{hyperref}
+%\usepackage{hyperref} 
+
+% ENCABEZADO Y PIE DE PÁGINA
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyfoot[C]{\thepage}  % centro
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[
+  topline=false, %oculta linea arriba
+  bottomline=false, % oculta linea abajo
+  rightline=false, % oculta linea derecha
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{siderules}
+
+\numberwithin{figure}{section} % numeración de figuras por seccion
+\usepackage[font=bf,labelfont=bf]{caption} % setea estilo bf (bold) a los caption (texto y label)
+
+\usepackage[compact]{titlesec} %Formato de las secciones
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+
+\usepackage{etoolbox} % Agrega puntos a las sections en el TOC
+\makeatletter
+\patchcmd{\l@section}
+  {\hfil}
+  {\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill}
+  {}{}
+\makeatother
+
+\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+
+\newcommand{\italic}[1]{\textit{#1}} % creo un alias del comando \textit para poner fuente italica
+
+\setcounter{secnumdepth}{0} % evita que section haga numerado de secciones
+
+\title{\Practico - \Titulo}
+
+%%%%%%%% TERMINA PREÁMBULO %%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+\topskip0pt
+\vspace*{\fill}
+\begin{center}																		%%%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}							
+\textsc{\huge \Materia}\\[1.5cm]	
+
+\textsc{\huge \Practico				%%%
+}\\[1.5cm]													%%%
+    																				%%%
+\vspace*{5cm}																		%%%
+																					%%%
+\HRule \\[0.4cm]																	%%% 
+{ \huge \bfseries \Titulo \\ \Large(Tomados de la $5^{ta}$ edición en inglés)}\\[0.3cm]	%%%
+ 																					%%%
+\HRule \\[4cm]																	%%%
+%%%
+																		
+\end{center}							 								\vspace*{\fill}		
+																					
+%%%%%%%%%%%%%%%%%%%% TERMINA PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+
+\newpage
+\section[Problema 1]{Problema 1 \textnormal{\Large{(Ref. Cap. 2 Prob. 1)}}}
+True or false?
+\renewcommand{\theenumi}{\alph{enumi}} % Cambia la numeracion a letras
+\begin{enumerate}
+\item A user requests a Web page that consists of some text and three images. For this page, the client will send one request message and receive four response messages.
+\item Two distinct Web pages (for example, \url{www.mit.edu/research.html} and \url{www.mit.edu/students.html}) can be sent over the same persistent connection.
+\item With nonpersistent connections between browser and origin server, it is possible for a single TCP segment to carry two distinct HTTP request messages.
+\item \textbf{TheDate:} header in the HTTP response message indicates when the object in the response was last modified.
+\item HTTP response messages never have an empty message body.
+\end{enumerate}
+
+\subsection*{Respuesta}
+
+\begin{enumerate}
+\item False
+\item True
+\item False
+\item False
+\item False
+\end{enumerate}
+
+\section[Problema 2]{Problema 2 \textnormal{\Large{(Ref. Cap. 2 Prob. 3)}}}
+
+Consider an HTTP client that wants to retrieve a Web document at a given URL. The IP address of the HTTP server is initially unknown. What transport and application-layer protocols besides HTTP are needed in this scenario?
+
+\subsection*{Respuesta}
+
+Application layer protocols: DNS and HTTP\\
+Transport layer protocols: UDP for DNS; TCP for HTTP
+
+\newpage
+
+\section[Problema 3]{Problema 3 \textnormal{\Large{(Ref. Cap. 2 Prob. 5)}}}
+
+The text below shows the reply sent from the server in response to the HTTP GET message in the question above. Answer the following questions, indicating where in the message below you find the answer.
+
+\begin{verbatim}
+HTTP/1.1 200 OK<cr><lf>
+Date: Tue, 07 Mar 2008 12:39:45GMT<cr><lf>
+Server: Apache/2.0.52 (Fedora)<cr><lf>
+Last-Modified: Sat, 10 Dec2005 18:27:46 GMT<cr><lf>
+ETag: “526c3-f22-a88a4c80”<cr><lf>
+Accept- Ranges: bytes<cr><lf>
+Content-Length: 3874<cr><lf>
+Keep-Alive: timeout=max=100<cr><lf>
+Connection: Keep-Alive<cr><lf>
+Content-Type: text/html; charset= ISO-8859-1<cr><lf><cr><lf>
+<!doctype html public “- //w3c//dtd html 4.0 transitional//en”><lf><html><lf> <head><lf> 
+<meta http-equiv=”Content-Type” content=”text/html; charset=iso-8859-1”><lf>
+<meta name=”GENERATOR” content=”Mozilla/4.79 [en] (Windows NT 5.0; U) Netscape]”><lf>
+<title>CMPSCI 453 / 591 / NTU-ST550A Spring 2005 homepage</title><lf></head><lf> 
+<much more document text following here (not shown)>
+\end{verbatim}
+
+\begin{enumerate}
+\item Was the server able to successfully find the document or not? What time was the document reply provided?
+\item When was the document last modified?
+\item How many bytes are there in the document being returned?
+\item What are the first 5 bytes of the document being returned? Did the server agree to a persistent connection?
+\end{enumerate}
+
+\subsection*{Respuesta}
+
+\begin{enumerate}
+\item The status code of 200 and the phrase OK indicate that the server was able to locate the document successfully. The reply was provided on Tuesday, 07 Mar 2008 12:39:45 Greenwich Mean Time.
+\item The document index.html was last modified on Saturday 10 Dec 2005 18:27:46 GMT.
+\item There are 3874 bytes in the document being returned.
+\item The first five bytes of the returned document are : \verb|<!doc|. The server agreed to a persistent connection, as indicated by the \verb|Connection: Keep-Alive| field.
+\end{enumerate}
+
+\newpage
+
+\section[Problema 4]{Problema 4 \textnormal{\Large{(Ref. Cap. 2 Prob. 6)}}}
+Obtain the HTTP/1.1 specification (RFC 2616). Answer the following questions:
+
+\begin{enumerate}
+\item Explain the mechanism used for signaling between the client and server to indicate that a persistent connection is being closed. Can the client, the server, or both signal the close of a connection?
+\item What encryption services are provided by HTTP?
+\item Can a client open three or more simultaneous connections with a given server?
+\item Either a server or a client may close a transport connection between them if either one detects the connection has been idle for some time. Is it possible that one side starts closing a connection while the other side is transmitting data via this connection? Explain.
+\end{enumerate}
+
+\subsection*{Respuesta}
+
+\begin{enumerate}
+\item Persistent connections are discussed in section 8 of RFC 2616 (the real goal of this question was to get you to retrieve and read an RFC). Sections 8.1.2 and 8.1.2.1 of the RFC indicate that either the client or the server can indicate to the other that it is going to close the persistent connection. It does so by including the including the connection-token ``close'' in the Connection-header field of the http request/reply.
+\item HTTP does not provide any encryption services.
+\item (From RFC 2616) ``Clients that use persistent connections should limit the
+number of simultaneous connections that they maintain to a given server. A single-user client SHOULD NOT maintain more than 2 connections with any server or proxy.''
+\item Yes. (From RFC 2616) ``A client might have starteto send a new request at the same time that the server has decided to close the ``idle'' connection. From the server's point of view, the connection is being closed while it was idle, but from the client's point of view, a request is in progress.''
+\end{enumerate}
+
+\section[Problema 5]{Problema 5 \textnormal{\Large{(Ref. Cap. 2 Prob. 7)}}}
+
+Suppose within your Web browser you click on a link to obtain a Web page. The IP address for the associated URL is not cached in your local host, so a DNS lookup is necessary to obtain the IP address. Suppose that $n$ DNS servers are visited before your host receives the IP address from DNS; the successive visits incur an RTT of $\mathrm{RTT_1 , \ldots , RTT_n}$. Further suppose that the Web page associated with the link contains exactly one object, consisting of a small amount of HTML text. Let $\mathrm{RTT_0}$ denote the RTT between the local host and the server containing the object. Assuming zero transmission time of the object, how much time elapses from when the client clicks on the link until the client receives the object?
+
+\subsection*{Respuesta}
+
+The total amount of time to get the IP address is\\
+\begin{equation*}\mathrm{RTT_1 + RTT_2 + \ldots + RTT_n}.\end{equation*}
+Once the IP address is known, $\mathrm{RTT_0}$ elapses to set up the TCP connection and another $\mathrm{RTT_0}$ elapses to request and receive the small object. The total response time is
+\begin{equation*}\mathrm{2RTT_0 + RTT_1 + RTT_2 + \ldots + RTT_n}\end{equation*}
+
+\section[Problema 6]{Problema 6 \textnormal{\Large{(Ref. Cap. 2 Prob. 10)}}}
+
+Consider a short, 10-meter link, over which a sender can transmit at a rate of 150 bits/sec in both directions. Suppose that packets containing data are 100,000 bits long, and packets containing only control (e.g., ACK or handshaking) are 200 bits long. Assume that N parallel connections each get 1/N of the link bandwidth. Now consider the HTTP protocol, and suppose that each downloaded object is 100 Kbits long, and that the initial downloaded object contains 10 referenced objects from the same sender. Would parallel downloads via parallel instances of non-persistent HTTP make sense in this case? Now consider persistent HTTP. Do you expect significant gains over the non-persistent case? Justify and explain your answer.
+
+\subsection*{Respuesta}
+
+Note that each downloaded object can be completely put into one data packet. Let $\mathrm{T_p}$ denote the one-way propagation delay between the client and the server.\\
+ \\
+First consider parallel downloads via non-persistent connections. Parallel download would allow 10 connections share the 150 bits/sec bandwidth, thus each gets just 15 bits/sec. Thus, the total time needed to receive all objects is given by:
+(200/150 + $\mathrm{T_p}$ + 200/150 + $\mathrm{T_p}$ + 200/150+ $\mathrm{T_p}$ + 100,000/150+ $\mathrm{T_p}$ )\\
++ (200/(150/10)+ $\mathrm{T_p}$ + 200/(150/10) + $\mathrm{T_p}$ + 200/(150/10)+ $\mathrm{T_p}$ + 100,000/(150/10)+ $\mathrm{T_p}$ )\\
+= 7377 + 8*$\mathrm{T_p}$ (seconds)\\
+ \\
+Then consider persistent HTTP connection. The total time needed is give by: (200/150+ $\mathrm{T_p}$ + 200/150 + $\mathrm{T_p}$ + 200/150+ $\mathrm{T_p}$ + 100,000/150+ $\mathrm{T_p}$ )\\
++ 10*(200/150+ $\mathrm{T_p}$ + 100,000/150 + $\mathrm{T_p}$ )\\
+=7351 + 24*$\mathrm{T_p}$ (seconds)\\
+ \\
+Assume the speed of light is 300*$10^6$ m/sec, then $\mathrm{T_p}$=10/(300*$10^6$)=0.03 microsec. $\mathrm{T_p}$ is negligible compared with transmission delay.\\
+ \\
+Thus, we see that the persistent HTTP does not have significant gain (less than 1 percent) over the non-persistent case with parallel download.
+
+\section[Problema 7]{Problema 7 \textnormal{\Large{(Ref. Cap. 2 Prob. 11)}}}
+
+Consider the scenario introduced in the previous problem. Now suppose that the link is shared by Bob with four other users. Bob uses parallel instances of non-persistent HTTP, and the other four users use non-persistent HTTP without parallel downloads.
+\begin{enumerate}
+\item a. Do Bob's parallel connections help him get Web pages more quickly? Why or why not?
+\item If all five users open five parallel instances of non-persistent HTTP,then would Bob’s parallel connections still be beneficial? Why or why not?
+\end{enumerate}
+
+\subsection*{Respuesta}
+
+\begin{enumerate}
+\item Yes, because Bob has more connections, so he can proportionally get more aggregate bandwidth share out of the total link bandwidth.
+\item Yes, Bob still needs to perform parallel download, otherwise he will get less bandwidth share than other four users. In fact, all users might tend to open more connections in order to gain more bandwidth share.
+\end{enumerate}
+
+\section[Problema 8]{Problema 8 \textnormal{\Large{(Ref. Cap. 2 Prob. 14)}}}
+
+How does SMTP mark the end of a message body? How about HTTP? Can HTTP use the same method as SMTP to mark the end of a message body? Explain.
+
+\subsection*{Respuesta}
+
+SMTP uses a line containing only a period to mark the end of a message body.\\
+HTTP uses ``Content-Length header field'' to indicate the length of a message body.\\
+No, HTTP cannot use the method used by SMTP, because HTTP message could be binary data, whereas in SMTP, the message body must be in 7-bit ASCII format.
+
+\section[Problema 9]{Problema 9 \textnormal{\Large{(Ref. Cap. 2 Prob. 26)}}}
+
+Suppose Bob joins a BitTorrent torrent, but he does not want to upload any data to any other peers (so called free-riding).
+
+\begin{enumerate}
+\item Bob claims that he can receive a complete copy of the file that is shared by the swarm. Is Bob’s claim possible? Why or why not? 
+\item Bob further claims that he can further make his ``free-riding'' more efficient by using a collection of multiple computers (with distinct IP addresses) in the computer lab in his department. How can he do that?
+\end{enumerate}
+
+\subsection*{Respuesta}
+
+\begin{enumerate}
+\item Yes. His first claim is possible, as long as there are enough peers staying in the swarm for a long enough time. Bob can always receive data through optimistic unchoking by other peers.
+\item His second claim is also true. He can run a client on each machine, and let each client do ``free-riding'', and combine those collected chunks from different machines into a single file. He can even write a small scheduling program to let different machines only asking for different chunks of the file. This is actually a kind of Sybil attack in P2P networks.
+\end{enumerate}
+
+\section[Problema 10]{Problema 10 \textnormal{\Large{(Ref. Cap. 2 Prob. 28)}}}
+
+In the circular DHT example in Section 2.6.2, suppose that peer 3 learns that peer 5 has left. How does peer 3 update its successor state information? Which peer is now its first successor? Its second successor?
+
+\subsection*{Respuesta}
+
+Peer 3 learns that peer 5 has just left the system, so Peer 3 asks its first successor (peer 4) for the identifier of its immediate successor (peer 8). Then peer 3 will make peer 8 as its second successor.\\
+Note that peer 3 knows that peer 5 was originally the first successor of peer 4, so peer 3 would wait until peer 4 finishes updating its first successor.
+
+\section[Problema 11]{Problema 11 \textnormal{\Large{(Ref. Cap. 2 Prob. 29)}}}
+
+In the circular DHT example in Section 2.6.2, suppose that a new peer 6 wants to join the DHT and peer 6 initially only knows peer 15’s IP address. What steps are taken?
+
+\subsection*{Respuesta}
+
+Peer 6 would first send peer 15 a message, saying ``what will be peer 6’s predecessor and successor?'' This message gets forwarded through the DHT until it reaches peer 5, who realizes that it will be 6’s predecessor and that its current successor, peer 8, will become 6’s successor. Next, peer 5 sends this predecessor and successor information back to 6. Peer 6 can now join the DHT by making peer 8 its successor and by notifying peer 5 that it should change its immediate successor to 6.
+
+\section[Problema 12]{Problema 12 \textnormal{\Large{(Ref. Cap. 2 Prob. 33)}}}
+
+As DHTs are overlay networks, they may not necessarily match the underlay physical network well in the sense that two neighboring peers might be physically very far away; for example, one peer could be in Asia and its neighbor could be in North America. If we randomly and uniformly assign identifiers to newly joined peers, would this assignment scheme cause such a mismatch? Explain. And how would such a mismatch affect the DHT’s performance?
+
+\subsection*{Respuesta}
+
+Yes, that assignment scheme of keys to peers does not consider underlying network at all, so it very likely causes mismatch.\\
+The mismatch may potentially degrade the search performance. For example, consider a logical path p1 (consisting of only two logical links): $\mathrm{A \rightarrow B \rightarrow C}$, where A and B are neighboring peers, and B and C are neighboring peers. Suppose that there is another logical path p2 from A to B (consisting of 3 logical links): $\mathrm{A \rightarrow D \rightarrow E \rightarrow C}$.
+It might be the case that A and B could be very far away physically, and B and C could be very far away physically. But A, D, E, and C are very close physically. In other words, a shorter logical path corresponds to a longer physical path than does a longer logical path.
+
+\end{document}
