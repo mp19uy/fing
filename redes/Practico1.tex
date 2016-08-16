@@ -7,11 +7,7 @@
 %%%%%%% DEFINICIÓN DE VARIABLES %%%%%%%%%%%%%%%%%%%
 \newcommand{\Practico}{Practico 1}
 \newcommand{\Titulo}{Letra y Soluciones Oficiales del Kurose}
-\newcommand{\Materia}{Redes de Computación}
-\newcommand{\Curso}{Curso 2016}
-\newcommand{\EncabezadoIzq}{Universidad de la República}
-\newcommand{\EncabezadoMed}{Facultad de Ingeniería}
-\newcommand{\EncabezadoDer}{Instituto de Computación}
+\newcommand{\Materia}{Redes de Computadoras}
 
 %%%%%%%% PREÁMBULO %%%%%%%%%%%%
 
@@ -47,13 +43,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\fancyhead[L]{\EncabezadoIzq} %encabezado izquierda
-\fancyhead[C]{\EncabezadoMed} %encabezado centro
-\fancyhead[R]{\EncabezadoDer}   % dereecha
-
-\fancyfoot[R]{\Curso}  % Pie derecha
 \fancyfoot[C]{\thepage}  % centro
-\fancyfoot[L]{\Practico}  %izquierda
 \renewcommand{\footrulewidth}{0.4pt}
 
 \usepackage[framemethod=tikz]{mdframed}
@@ -104,7 +94,6 @@
 
 \textsc{\huge \Practico				%%%
 }\\[1.5cm]													%%%
-
     																				%%%
 \vspace*{5cm}																		%%%
 																					%%%
@@ -112,7 +101,7 @@
 { \huge \bfseries \Titulo \\ \Large(Tomados de la $5^{ta}$ edición en inglés)}\\[0.3cm]	%%%
  																					%%%
 \HRule \\[4cm]																	%%%
- 																				%%%
+%%%
 																		
 \end{center}							 								\vspace*{\fill}		
 																					
@@ -145,7 +134,7 @@ This elementary problem begins to explore propagation delay and transmission del
 \item Determine the transmission time of the packet, $d_{trans}$, in terms of $L$ and $R$.
 \item Ignoring processing and queuing delays, obtain an expression for the end- to-end delay.
 \item Suppose Host A begins to transmit the packet at time $t = 0$. At time $t = d_{trans}$, where is the last bit of the packet?
-\item Suppose dprop is greater than $d_{trans}$. At time $ t= d_{trans}$, where is the first bit of the packet?
+\item Suppose $d_{prop}$ is greater than $d_{trans}$. At time $ t= d_{trans}$, where is the first bit of the packet?
 \item Suppose $d_{prop}$ is less than $d_{trans}$. At time $t = d_{trans}$, where is the first bit of the packet?
 \item Suppose $s = 2.5 \cdot 10^8$, $L$ = 120 bits, and $R$=56 kbps. Find the distance $m$ so that $d_{prop}$ equals $d_{trans}$.
 \end{enumerate}
