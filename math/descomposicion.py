@@ -8,7 +8,7 @@
 import math
 
 n = int(input('Ingrese n: '))
-o = int(input('Minimo[0] o Máximo[1]?: '))
+o = int(input('Minimo[0] o Maximo[1]?: '))
 i = 2
 if (o == 1):
     while i*i < n:
